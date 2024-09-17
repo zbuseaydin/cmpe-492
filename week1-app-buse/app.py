@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
-import os
 from langchain_cohere import ChatCohere
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
+from dotenv import load_dotenv
 
-os.environ["COHERE_API_KEY"] = "zkHV3A9cXrN8oEtd7eW8dhwx2IQuKwmo4O21tGoN"
+load_dotenv()
 model = ChatCohere(model="command-r-plus")
 parser = StrOutputParser()
 
