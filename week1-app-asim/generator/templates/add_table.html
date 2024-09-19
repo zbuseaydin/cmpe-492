@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Table</title>
+</head>
+<body>
+    <h1>Add Table</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="table_name">Table Name:</label>
+        <input type="text" id="table_name" name="table_name" required><br>
+        <div id="columns">
+            <label for="column_names">Column Names:</label>
+            <input type="text" name="column_names" required>
+        </div>
+        <button type="button" onclick="addColumn()">Add Column</button><br>
+        <input type="submit" value="Add Table">
+    </form>
+
+    <script>
+        function addColumn() {
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'column_names';
+            input.required = true;
+            document.getElementById('columns').appendChild(input);
+        }
+    </script>
+</body>
+</html>
