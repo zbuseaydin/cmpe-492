@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('add_table/', views.add_table, name='add_table'),
     path('generate_query/', views.generate_query, name='generate_query'),
+    path('remove_table/<int:table_id>/', views.remove_table, name='remove_table'),
 ]

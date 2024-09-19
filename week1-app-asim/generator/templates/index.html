@@ -7,9 +7,12 @@
     <h1>SQL Generator</h1>
     <a href="{% url 'add_table' %}">Add Table</a>
     <h2>Existing Tables:</h2>
-    <ul>
+    <ul id="table-list">
     {% for table in tables %}
-        <li>{{ table.name }} ({% for column in table.columns.all %}{{ column.name }}{% if not forloop.last %}, {% endif %}{% endfor %})</li>
+        <li>
+            {{ table.name }} ({% for column in table.columns.all %}{{ column.name }}{% if not forloop.last %}, {% endif %}{% endfor %})
+            <button onclick="removeTable({{ table.id }})">Remove</button>
+        </li>
     {% endfor %}
     </ul>
     <h2>Generate SQL Query</h2>
@@ -34,6 +37,25 @@
                 document.getElementById('result').innerText = data.sql_query;
             });
         });
+
+        function removeTable(tableId) {
+            if (confirm('Are you sure you want to remove this table?')) {
+                fetch(`/remove_table/${tableId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('Failed to remove table');
+                    }
+                });
+            }
+        }
     </script>
 </body>
 </html>

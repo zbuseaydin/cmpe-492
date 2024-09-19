@@ -35,3 +35,10 @@ def generate_query(request):
         return JsonResponse({'sql_query': result})
     
     return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+def remove_table(request, table_id):
+    if request.method == 'POST':
+        table = Table.objects.get(id=table_id)
+        table.delete()
+        return JsonResponse({'success': True})
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
