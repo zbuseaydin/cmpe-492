@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Generator</title>
+</head>
+<body>
+    <h1>SQL Generator</h1>
+    <a href="{% url 'add_table' %}">Add Table</a>
+    <h2>Existing Tables:</h2>
+    <ul>
+    {% for table in tables %}
+        <li>{{ table.name }} ({% for column in table.columns.all %}{{ column.name }}{% if not forloop.last %}, {% endif %}{% endfor %})</li>
+    {% endfor %}
+    </ul>
+    <h2>Generate SQL Query</h2>
+    <form id="query-form">
+        <textarea name="question" rows="4" cols="50" placeholder="Enter your question here"></textarea><br>
+        <input type="submit" value="Generate SQL">
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('query-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            fetch('{% url "generate_query" %}', {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = data.sql_query;
+            });
+        });
+    </script>
+</body>
+</html>
