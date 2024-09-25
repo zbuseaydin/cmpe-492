@@ -1,0 +1,12 @@
+The IE306 course, Systems Simulation, is a 4-credit module that introduces students to the basic concepts of discrete-event simulation (DES) modeling and analysis. The course is taught through a combination of lectures and seminars that must be attended together in the same semester. It covers two basic approaches to DES: the event-scheduling and process-interaction approaches. 
+
+The course focuses on input data analysis and random number and variate generation techniques, such as inverse transformation. Students will also gain hands-on experience with computer simulation languages like ARENA, SIMAN, or SimPy. 
+
+Prerequisites for the course include basic knowledge in qualitative research and statistics, specifically IE 256 (Statistics for Industrial Engineers) or its equivalent. 
+
+The course objectives are to teach students:
+1. Basic concepts and algorithms of DES modeling/analysis
+2. How to use a specific computer simulation language
+3. Application of probability and statistics to simulation modeling and data analysis
+
+The course is estimated to take one semester to complete and has a maximum capacity of 25 students. It is scheduled for Fall 2024, with classes on Monday, Tuesday, and Thursday. The instructor is Gönenç Yücel, and the course webpage can be accessed through Moodle.

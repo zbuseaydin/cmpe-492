@@ -1,0 +1,18 @@
+Kaptan Olma Süreci:
+
+1. Bir BUYELKEN üyesi, Kaptanlık Başvuru Formu'nu doldurarak kaptanlığa başvurabilir.
+2. Başvuru yapan üyenin katıldığı geziler sonrasında, yardımcı kaptanlığa uygunluğu değerlendirilir.
+3. Uygun görüldüğü takdirde, gez değerlendirme toplantısında yardımcı kaptanlığa aday gösterilir ve tüm kaptanların görüşü alınır.
+4. BUYELKEN Kaptanlık Denetim Kurulu, adayın yardımcı kaptanlık sürecini başlatır ve geçmiş geziler hakkında bilgi toplar.
+5. Aday, inceleme sonucu olumluysa, bir sonraki eğitim gezisinde yardımcı kaptanlık yapmaya davet edilir.
+6. Yardımcı kaptanlık görevini başarılı bir şekilde tamamlarsa, kaptanlığa aday gösterilir ve tekrar kaptanların görüşü alınır.
+7. BUYELKEN Kaptanlık Denetim Kurulu, adayın performansını ve "Kaptan Olma Kriterleri"ni karşılayıp karşılamadığını değerlendirir.
+8. Aday, kriterleri sağlıyorsa, bir mentor kaptan seçerek bir çalışma yapmaya davet edilir. Bu çalışma en çok sekiz ay içinde tamamlanmalıdır.
+9. Adayın mentoru, diğer kaptanlarla adayın yelken geçmişini ve çalışma konusunu paylaşır.
+10. Adayın çalışması onaylanırsa, bir sonraki bahar veya güz gezisinde kaptan olarak davet edilir ve gezinin ardından 3 yıldız brövesi alır.
+
+Kaptan:
+
+Kaptan, bir BUYELKEN (Boğaziçi Üniversitesi Denizcilik ve Yelken Kulübü) üyesinin, yukarıda özetlenen süreçte belirlenen kriterleri karşılayarak elde ettiği unvandır. Kaptan, denizcilik konusunda eğitimli, deneyimli ve kulüp değerlerini taşıyan kişidir. Gezilere katılarak yeni yelkencilerin eğitimine destek olur, yeni kaptanlar yetiştirir ve kulübe katkıda bulunur.
+
+Özetle, kaptan olma süreci, gerekli eğitimleri alma, deneyim kazanma, kaptanlık becerilerini gösterme ve kulübe katkı sağlama aşamalarından oluşmaktadır. Kaptanlar, denizcilik mirasını zenginleştirecek araştırmalar yaparak da özgün çalışmalar gerçekleştirebilirler.

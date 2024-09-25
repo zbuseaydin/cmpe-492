@@ -1,0 +1,7 @@
+You primarily worked on two projects during your internship: book summarization for a new book app and implementing main functions for files, folders, and workspaces, including an AI Summary feature in the Transkriptor app. 
+
+For the book app, you developed a book summarization feature. This involved fetching books from the Gutenberg API, designing a system to efficiently retrieve book content, and generating summaries using the OpenAI API. You also created an HTML presentation to communicate the progress and results of your work, detailing the design, challenges, and outcomes of your summarization flow. 
+
+The second project, Transkriptor, involved implementing an AI Summary feature, enabling users to generate summaries of transcriptions based on templates. You managed the functionality for template management, summary creation, and result storage, again utilizing the OpenAI API. 
+
+Overall, your internship focused on developing summarization features, improving content retrieval systems, and enhancing user experiences through innovative implementations.
