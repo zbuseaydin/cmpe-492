@@ -1,0 +1,119 @@
+INDUSTRIAL ENGINEERING DEPARTMENT
+IE 306
+Systems Simulation
+Fall 2024
+Credits/ECTS:
+4 Credits / 7 ECTS
+Class/Laboratory/PS schedule: Monday 14:00-14:50
+Tuesday 09:00-10:50
+Thursday 15:00-16:50
+Instructor:
+Gönenç Yücel (gonenc.yucel@boun.edu.tr)
+Prerequisite(s):
+IE 256 (Statistics for Industrial Engineers), or equivalents
+Course Webpage
+http://moodle.boun.edu.tr
+Course Mirror:
+https://engineering.purdue.edu/coursemirror/
+IE 306 (#518 Pass: egixua)
+Course Description:
+The course is organized to introduce basic concepts of discrete-event simulation (DES)
+modeling and analysis. After providing an understanding about the two basic approaches to
+DES (Event-scheduling versus Process-interaction approach), the focus will be set on input
+data analysis, and random number and variate generation (inverse transformation and other
+selected techniques). During model construction stage, the students will be instructed about
+widely used computer simulation languages, and will have hands-on experience with a
+selected one (ARENA, SIMAN, SimPy, etc.). The final section of the course deals with
+model validation and output analysis.
+Course objectives (and program outcomes):
+• To teach students the basic concepts and algorithms of discrete-event simulation
+modeling/analysis
+• To introduce them to a specific computer simulation language (ie. Arena/SIMAN).
+• To enable them to apply their probability and statistics knowledge to simulation modeling,
+input and output data analysis.
+By seeking the above objectives, this course mainly addresses the following student outcomes of
+the industrial engineering undergraduate program:
+•
+
+•
+
+•
+
+Student Outcome (1): An ability to identify, formulate, and solve complex
+engineering problems by applying principles of engineering, science, and
+mathematics.
+Student Outcome (6): An ability to develop and conduct appropriate
+experimentation, analyze and interpret data, and use engineering judgment to
+draw conclusions
+Student Outcome (7): An ability to acquire and apply new knowledge as needed,
+using appropriate learning strategies
+
+Course Outline:
+Week Topic
+Course Organization and Introduction to Simulation
+1
+(Chapter 1 from Banks et al. 2009)
+Continuous vs. Discrete Simulation Modeling
+2
+(Chapter 1 from Banks et al. 2009)
+Discrete-event simulation principles
+3
+(Chapter 2 & 3 from Banks et al. 2009)
+Event Scheduling Approach and Algorithm
+4
+(Chapter 3 from Banks et al. 2009)
+Random number generation
+5
+(Chapter 7 from Banks et al. 2009)
+Input Data Analysis and Parameter Estimation
+6
+(Chapter 9 from Banks et al. 2009)
+Goodness-of-fit Tests
+7
+(Chapter 9 from Banks et al. 2009)
+Random variate generation
+8-9
+(Chapter 8 from Banks et al. 2009)
+10
+MIDTERM (25/11/2024 17:00)
+Acceptance-Rejection and Some Special-Purpose Techniques
+10
+(Chapter 8 from Banks et al. 2009)
+Process Interaction Approach and Simulation Software
+11
+(Chapter 4 from Banks et al. 2009)
+11-12 SIMAN/ARENA Software, Examples and Applications
+Model Verification and Validation
+13
+(Chapter 10 from Banks et al. 2009)
+Statistical analysis of simulation output
+14
+(Chapter 11 & 12 from Banks et al. 2009)
+
+Grading:
+Midterm Exam:
+32%
+Final Exam:
+45%
+Assignments:
+20%
+CourseMirror Feedback: 3%
+Assignments:
+There will be several homework/programming assignments. These are to be done individually by
+each student. You may only discuss conceptual questions with your friends; you are expected to do
+the actual specific work individually. No Homework will be accepted after its due date.
+
+Exams:
+There will be a midterm exam, and a comprehensive final exam. To be admitted to the final exam,
+a student must obtain a ‘final exam visa’. The requirements to obtain a final exam visa are: i- to
+have had the midterm exam, and ii- to have accumulated from the midterm exam and homework
+assignments, at least 25% of the total score.
+Textbook:
+• Banks, Jerry and J.S. Carson, B.L. Nelson and D.M. Nicol, Discrete Event System
+Simulation, Fifth edition, New Jersey, Prentice-Hall, 2009
+Supplementary References:
+• Law, M.A., Simulation Modeling and Analysis, Fifth Edition, McGraw-Hill, 2015
+
+Prepared by, and date of preparation: Gönenç Yücel, September 2024
+
+

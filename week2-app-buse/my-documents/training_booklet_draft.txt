@@ -1,0 +1,125 @@
+2. Internship Activities
+
+a. Book Summarization Flow
+
+	During my internship, one of my main tasks involved the development of a book summarization feature for a new book app being implemented by the company. This feature was designed to streamline the process of downloading books from the Gutenberg API and generating summaries of the books using OpenAI API.
+	The first step in the process was to design a system capable of fetching books from the Gutenberg API. I implemented a flow that could retrieve the book's content efficiently. This required understanding the API's structure, including the metadata for each book (such as title, author, and format availability), and implementing code that could retrieve the book in a suitable format, such as plain text or HTML.
+
+Summarization Approaches
+	I explored two different approaches to summarize the books.
+	1. Chunk-Based Summarization:
+	In the first approach, I divided the book into smaller chunks. Initially, the division was done arbitrarily without specific regard to the book's natural structure. For each chunk, I implemented a process to generate a summary. To improve coherence between summaries, I fed the previous chunk's summary along with the next chunk's content into the summarization model. This iterative approach allowed for a more connected summary but presented challenges when chunk boundaries did not align with the book's logical sections.
+	2. Chapter-Based Summarization:
+	In the second approach, I aimed to align the summarization process more closely with the book's natural structure by summarizing it chapter by chapter. This required extracting chapters from the book's HTML structure, which was more complex than the previous method but offered a more logical flow for the summaries. I wrote code to parse the HTML and identify chapter breaks, ensuring that each chapter could be processed individually. This approach provided better context for the summaries and maintained the narrative flow, making it more user-friendly.
+	
+
+
+	Both approaches had their own advantages, but in the end we decided to move with the second one which was to first dividing the book into its original chapters, and then summarizing each chapter.
+
+Deployment and Presentation of the Book Summarization Feature
+	After implementing both summarization approaches, I proceeded to enhance the system's infrastructure by migrating the entire application to AWS services.
+	I utilized Amazon S3 for storing the downloaded books and their corresponding summaries. S3 provided a scalable and durable storage solution, ensuring that the data would be readily accessible whenever needed. Next, I integrated Amazon DynamoDB for managing metadata related to the books, such as titles, authors, and summaries. DynamoDB's NoSQL structure allowed for efficient querying and retrieval of book information, enhancing the application's responsiveness. I also implemented AWS Lambda functions to facilitate serverless processing of the summarization tasks.
+	To effectively communicate the progress and results of my work, I created an HTML presentation. This presentation highlighted the design of the summarization flow, the technical challenges encountered during implementation, and the outcomes of both summarization approaches. This presentation was used during team meetings, allowing for an interactive discussion of my work and facilitating feedback from colleagues.
+
+Implementation of General Summarization Workflow
+	After deciding on the approach to go with, my next task to perform the summary generation for the most popular 100 books. I developed a workflow to efficiently summarize the books. This general flow consisted of these steps:
+	1. Identifying Popular Books: The first step involved querying the system to find the most popular 100 books available in the Gutenberg API.
+	2. Chapter Division: Once I had the list of popular books, the next task was dividing each book into its chapters. I utilized the previously developed HTML parsing methods to extract chapters accurately, ensuring that the division maintained the logical flow of each book.
+	3. Summarization with Multithreading: To enhance the performance and efficiency of the summarization process, I implemented multithreading. This allowed multiple chapters to be summarized concurrently, significantly reducing the overall processing time. Each thread handled 
+
+
+the summarization of a chapter independently, leveraging the summarization model developed in earlier stages.
+	4. Database Storage: After generating the summaries, I saved both the summaries and the corresponding books into our database and S3 buckets.
+
+
+b. Implementing Main Functions for Files, Folders, and Workspaces
+
+	I was given the responsibility of rewriting the primary functions that serve both internal processes and external API users (developers accessing our API). The functions were divided into three main categories: Files, Folders, and Workspaces. My task was to ensure that these functions were clearly implemented, well-documented, and optimized for both internal operations and external API access. Therefore, every function needed to be written following the clean code principles, the input parameters and responses needed to be clear and the error messages needed to be meaningful. I implemented all of the functions as AWS Lambda functions with Python. I also used S3 buckets, DynamoDB and API Gateway.
+
+	1. Files Functions
+The functions under the "Files" category dealt with the management and manipulation of files. I implemented the following Lambda functions in Python:
+    • Files-DeleteFile: Deletes a file of the user.
+    • Files-GetContent: Retrieves the content of a file.
+    • Files-GetFile: Retrieves all the information about the specified file (except its content).
+    • Files-GetFiles: Lists all files of the user.
+    • Files-MoveFileToFolder: Moves a file into a different folder.
+    • Files-MoveFileToWorkspace: Moves a file from its current location to a workspace.
+    • Files-RenameFile: Renames a file.
+    • Files-UpdateContent: Updates the content of a file.
+
+	2. Folders Functions
+For folder management, I developed the following functions:
+    • Folders-CreateFolder: Creates a new folder.
+    • Folders-DeleteFolder: Deletes a folder.
+      
+    • Folders-GetFile: Retrieves a file inside the folder.
+    • Folders-GetFiles: Retrieves all files inside the folder.
+    • Folders-GetFolder: Retrieves all the information about the specified folder.
+    • Folders-GetFolders: Lists all folders inside a folder.
+    • Folders-RenameFolder: Renames a folder.
+
+	3. Workspaces Functions
+Workspace management required additional features, and I implemented the following:
+    • Workspaces-AddMember: Adds a member to the existing workspace.
+    • Workspaces-CreateWorkspace: Creates a new workspace.
+    • Workspaces-DeleteMember: Removes a member from the workspace.
+    • Workspaces-DeleteWorkspace: Deletes the workspace.
+    • Workspaces-GetFile: Retrieves the information about the file inside a workspace.
+    • Workspaces-GetFiles: Lists all files in a workspace.
+    • Workspaces-GetFolders: Lists all folders that are inside the workspace.
+    • Workspaces-GetMemberEmails: Retrieves the emails of the members of the workspace.
+    • Workspaces-GetWorkspace: Retrieves the information about the workspace.
+    • Workspaces-GetWorkspaces: Lists all workspaces that the user is a member of.
+    • Workspaces-InviteMember: Invites a user to the workspace.
+    • Workspaces-RenameWorkspace: Renames an existing workspace.
+
+
+c. AI Summary Feature in Transkriptor
+	
+	One of the major tasks I got during my internship was the implementation of a new feature called AI Summary inside the Transkriptor app. This feature allows users to generate summaries of transcriptions based on templates. Users can either create their own custom templates or choose from a set of default templates and use it to get the summary of their transcriptions. The summaries are generated using the OpenAI API (specifically the assistants), and I was responsible for implementing the functionality required to manage templates, create summaries, and store the results.
+
+
+	I developed an assistant specifically for generating these summaries using OpenAI's API. The assistant was optimized for handling transcription data and summary generation, providing accurate and contextually relevant summaries. I also used its vector storage to keep the transcriptions.
+	To manage the generated summaries and templates, I created tables in the database for summaries, user-generated templates and default templates. For the storage of the summaries, I set up Amazon S3 buckets, ensuring that the generated content can be retrieved when needed. Additionally, I translated the default summary templates into 76 different languages using the Deepl API and OpenAI API. 
+	I implemented the following Lambda functions in Python to manage the various aspects of the AI Summary feature:
+    • AISummary-AddDefaultTemplates: Adds the set of default templates into the system.
+    • AISummary-CreateSummary: Creates a new summary based on the provided template and transcription.
+    • AISummary-CreateTemplate: Creates a new custom template for a user.
+    • AISummary-DeleteSummary: Deletes a generated summary from the database and S3.
+    • AISummary-DeleteTemplate: Deletes a template from the system.
+    • AISummary-GetSummaries: Retrieves a list of summaries for a specific user or workspace.
+    • AISummary-GetSummary: Retrieves a specific summary by ID.
+    • AISummary-GetTemplate: Retrieves a specific template by ID.
+    • AISummary-GetTemplates: Retrieves all available templates for a user.
+    • AISummary-RegenerateSummarySection: Regenerates a specific section of an existing summary.
+    • AISummary-SaveSummary: Saves a generated summary to the database and S3.
+    • AISummary-UpdateSummary: Updates an existing summary.
+    • AISummary-UpdateTemplate: Updates an existing user or default template.
+
+
+d. New Marketing Mail Flow
+	
+	During my internship, I worked on implementing a marketing mailing flow for the company. This implementation was not very easy considering there were lots of different cases of the users and their actions. Therefore I needed to be careful to cover all the cases. There were different flows for  
+
+users with different actions which I will explain here. Making this brand new marketing mailing flow from scratch involved basically 4 steps:
+
+	1. Mail Templates and Subjects
+	My first task was to download and name the HTML mail templates and their corresponding text subjects that I get from the marketing team. These templates were essential for creating visually engaging and personalized email communication. I stored them in Amazon S3.
+
+	2. Implementing New Mailing Flows
+	Once the templates were in place, I proceeded to implement new mailing flows based on the detailed marketing strategy. (The overall mailing flow chart can be found in Appendices.) These flows included various triggers, such as user actions like signing up, abandoning, subscribing, cancelling the subscription or using certain features for the first time. The flow was designed to adapt to user behavior and send relevant promotional content, such as discounts or feature reminders.
+	The marketing mailing flows I implemented were designed to engage users at key moments, guiding them through various stages of their interaction with the app. These flows were built to cater to both subscribed and non-subscribed users, adjusting based on their actions within the platform. Here's a breakdown of some of the core flows:
+	Welcome and Discount Flow: As soon as a user signed up, they entered the welcome flow, receiving a welcome email and, if they hadn't subscribed yet, a timed discount offer (e.g., 50% off for 15 minutes or 1 hour). This initial flow aimed to convert new users by creating a sense of urgency.
+	Feature Initiation and Benefits Flow: If users interacted with a feature for the first time or visited a checkout page without purchasing, they triggered a benefits flow, where they received specific offers, such as a $1 Lite Plan or a reminder of available promotions. This flow was designed to encourage users to explore the platform more deeply and eventually convert into paying customers.
+	Onboarding Flow: For users who subscribed, I implemented a 5-step onboarding flow spread over the first few weeks of usage. The flow was structured to introduce users to key features at a manageable pace, offering helpful tips and prompting deeper engagement. Each onboarding email was spaced out to allow users time to explore the platform and fully understand its capabilities.
+	
+
+	Reminder and Expiration Flow: Users nearing the end of their trial period received reminders about their subscription's impending expiration. They were sent emails 3 days before, 1 day before, and even 1 day after expiration to encourage them to renew, with offers like 50% off after expiry or a 1-month free plan.
+	Abandoned Checkout Flow: Users who visited the checkout page without completing a purchase entered the abandoned checkout flow. Depending on the timing of their actions, they would receive tailored offers such as 50% discount, 1-month free, or $1 for a Lite Plan to entice them to finalize their purchase.
+	Special Offers and Product Updates: For both existing and new users, there were periodic mailings for new product promotions and seasonal campaigns, such as Back to School promotions  targeted at students. Additionally, for subscribed users, there were updates every 3 months about new features and usage statistics, keeping users engaged with the product.
+
+	3. Testing and Deploying the Mailing Flows
+	After the implementation phase, I thoroughly tested each flow to ensure that the right emails were being sent at the correct times, and that there were no errors in the process or in the mail templates themselves. This included testing different scenarios, such as subscribing, unsubscribing, and interaction with various features, and additionally testing in different languages. Once the flows passed all tests, I deployed them into production.
+
+	4. Monitoring the Mailing Flows
+	Post-deployment, I was responsible for monitoring the performance of the mailing flows. This involved ensuring that the emails were being delivered to the intended users. This implementation significantly improved the marketing team's ability to engage with users at critical points in their journey, analyze their behaviors and boost conversions.
