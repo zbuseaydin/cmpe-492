@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Conversational AI Interface</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .chat-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .chat-box {
+            max-height: 600px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .user-message {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .user-message .message {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .assistant-message {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .assistant-message .message {
+            display: inline-block;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .role-label {
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h2 class="text-center">Conversational RAP Interface</h2>
+        <div id="chat-box" class="chat-box"></div>
+        <form id="chat-form">
+            <div class="input-group">
+                <input type="text" id="user_input" class="form-control" placeholder="Type your message here..." autocomplete="off" required>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const chatBox = $("#chat-box");
+
+            // Load chat history
+            function loadChatHistory(chatHistory) {
+                chatBox.empty();  // Clear the chat box before updating it
+                chatHistory.forEach(entry => {
+                    chatBox.append(`
+                        <div class="user-message">
+                            <div class="message">${entry.user}</div>
+                        </div>
+                        <div class="assistant-message">
+                            <div class="role-label">${entry.role}</div>
+                            <div class="message">${entry.assistant}</div>
+                        </div>
+                    `);
+                });
+                chatBox.scrollTop(chatBox[0].scrollHeight);  // Automatically scroll to the bottom
+            }
+
+            // Handle form submission
+            $("#chat-form").on("submit", function (e) {
+                e.preventDefault();
+                const user_input = $("#user_input").val();
+                $("#user_input").val("");
+
+                $.post("/chat", { user_input: user_input }, function (data) {
+                    loadChatHistory(data.chat_history);  // Load the entire chat history
+                });
+            });
+        });
+    </script>
+</body>
+</html>
