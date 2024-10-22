@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import operator
-from typing import List, Dict, Literal, Annotated, Sequence
+from typing import Literal, Annotated, Sequence
 from typing_extensions import TypedDict
 from pydantic import BaseModel
 from langgraph.graph import END, StateGraph, START
@@ -9,13 +9,55 @@ from langchain_cohere import ChatCohere
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import BaseMessage, HumanMessage
 from langchain_community.tools.tavily_search import TavilySearchResults
+from debate_team_variables import prompts, llms
 
 load_dotenv()
 
-tavily_tool = TavilySearchResults(max_results=5)
-llm = ChatCohere(model="command-r-plus")
 
-#llm = ChatOpenAI()
+supervisor_agent_instructions = prompts["team_supervisor"]["agent_instructions"][0]
+supervisor_system_prompt = prompts["team_supervisor"]["system"][0]
+supervisor_user_prompt = prompts["team_supervisor"]["user"][0]
+research_prompt = prompts['research_agent'][0]
+antithesis_prompt = prompts['antithesis_agent'][0]
+summarizer_prompt = prompts['summarizer_agent'][0]
+jury_prompt = prompts['jury'][0]
+topic_statement = prompts['topic_statement'][0]
+
+team1_llm_name = [*llms][0]
+team1_model = llms[team1_llm_name][0]
+team2_llm_name = [*llms][0]
+team2_model = llms[team2_llm_name][0]
+jury_llm_name = [*llms][0]
+jury_model = llms[jury_llm_name][0]
+
+if team1_llm_name == 'cohere':
+    team1_llm = ChatCohere(model=team1_model)
+elif team1_llm_name == 'openai':
+    team1_llm = ChatOpenAI(model=team1_model)
+else:
+    team1_llm = ChatCohere(model="command-r-plus")
+
+if team2_llm_name == 'cohere':
+    team2_llm = ChatCohere(model=team2_model)
+elif team2_llm_name == 'openai':
+    team2_llm = ChatOpenAI(model=team2_model)
+else:
+    team2_llm = ChatCohere(model="command-r-plus")
+
+if jury_llm_name == 'cohere':
+    jury_llm = ChatCohere(model=jury_model)
+elif jury_llm_name == 'openai':
+    jury_llm = ChatOpenAI(model=jury_model)
+else:
+    jury_llm = ChatCohere(model="command-r-plus")
+
+
+sides = {"Team1": "Affirmative", "Team2": "Negative"}
+
+
+class routeResponse(BaseModel):
+    next: Literal["Researcher", "Antithesis Generator", "Speech Generator", "FINISH"]
+
 
 # Define the state types
 class DebateState(TypedDict):
@@ -26,6 +68,8 @@ class DebateState(TypedDict):
     current_speaker: str
     debate_stage: str
     next: str
+    jury_decision: str
+
 
 # Define the nodes
 def host_node(state: DebateState) -> DebateState:
@@ -62,11 +106,6 @@ def host_node(state: DebateState) -> DebateState:
             change['next'] = "Jury"
     return change
 
-options = ["Researcher", "Antithesis Generator", "Speech Generator", "FINISH"]
-class routeResponse(BaseModel):
-    next: Literal["Researcher", "Antithesis Generator", "Speech Generator", "FINISH"]
-
-sides = {"Team1": "Affirmative", "Team2": "Negative"}
 
 def team_supervisor_node(state: DebateState) -> DebateState:
     side = sides[state['current_speaker']]
@@ -74,42 +113,28 @@ def team_supervisor_node(state: DebateState) -> DebateState:
     # Determine the opposing team's finalized messages
     if state["current_speaker"] == "Team1":
         opposing_team_finalized = state["team2_finalized"]
+        llm = team1_llm
     else:
         opposing_team_finalized = state["team1_finalized"]
+        llm = team2_llm
 
     # Convert the finalized messages into a string for the prompt
-    opposing_team_text = "\n".join([msg for msg in opposing_team_finalized])
+    opposing_team_text = "\n".join([msg.content for msg in opposing_team_finalized])
 
     # Instructions for the supervisor
     agent_instructions = (
-        "Each member has distinct expertise:\n"
-        "- Researcher: gathers new data and information on the topic.\n"
-        "- Antithesis Generator: creates questions or counters opposing arguments.\n"
-        "- Speech Generator: generates speeches summarizing the team's stance.\n\n"
-        "Decide which member should act next, considering the debate's current state. "
-        "You should select 'FINISH' when you believe the team has completed their tasks "
-        "for this stage of the debate."
+        supervisor_agent_instructions
     )
-
     # Create the prompt with the opposing team's finalized answer included
     prompt = ChatPromptTemplate.from_messages([
         (
-            "system", 
-            "You are the supervisor of the {side} team in the debate on {topic}. "
-            "You must guide your team by selecting the appropriate member or choosing 'FINISH' when the team "
-            "has completed their tasks for this stage of the debate."
+            "system",
+            supervisor_system_prompt
         ),
         MessagesPlaceholder(variable_name="messages"),
         (
             "user",
-            "The debate is currently in the {stage} stage. "
-            "Based on the recent discussions, decide who should act next. "
-            "If you believe the team has finished their tasks for this stage, select 'FINISH'.\n\n"
-            "The opposing team has finalized the following text:\n"
-            "{opponent_text}\n\n"
-            "Please respond only in the following format:\n"
-            "{{\"next\": \"[Your selection here]\"}}\n"
-            "Your choices are: [Researcher, Antithesis Generator, Speech Generator, FINISH]."
+            supervisor_user_prompt
         )
     ]).partial(
         side=side, 
@@ -124,84 +149,84 @@ def team_supervisor_node(state: DebateState) -> DebateState:
     return {'next': response.next}
 
 
-
 def research_agent_node(state: DebateState, team_name: str) -> DebateState:
     search_results = tavily_tool.run(state["topic"])
 
     # Create a prompt that can use the state directly
     prompt = ChatPromptTemplate.from_template(
-        "You are the research agent for {team_name} in the debate on {topic}. "
-        "Use your expertise to provide relevant information based on the search results: {results}."
+        research_prompt
     ).partial(
         team_name=team_name,
         topic=state["topic"],
         results=search_results
     )
-    
-    # Create a chain between the prompt and the LLM
-    chain = prompt | llm
-    
+    prompt_messages = prompt.format_messages()
+    response = team1_llm.invoke(prompt_messages) if state["current_speaker"] == "Team1" else team2_llm.invoke(prompt_messages)
+    return {'messages' : [HumanMessage(content=response.content)]}
+
+
+def antithesis_agent_node(state: DebateState, team_name: str) -> DebateState:
+    global antithesis_prompt
+    if state["current_speaker"] == "Team1":
+        opposing_team_finalized = state["team2_finalized"]
+        current_team_finalized = state["team1_finalized"]
+        llm = team1_llm
+    else:
+        opposing_team_finalized = state["team1_finalized"]
+        current_team_finalized = state["team2_finalized"]
+        llm = team2_llm
+    if opposing_team_finalized:
+        antithesis_prompt += "The opposing team has finalized the following text:\n{opponent_text}\n\n"
+    if current_team_finalized:
+        antithesis_prompt += "Your team has finalized the following text:\n{current_team_text}\n\n"
+    prompt = ChatPromptTemplate.from_template(
+        antithesis_prompt
+    ).partial(
+        team_name=team_name,
+        topic=state["topic"],
+        opponent_text=opposing_team_finalized,
+        current_team_text=current_team_finalized
+    )
+#    chain = prompt | llm
+    # Invoke the chain with the state
+    prompt_messages = prompt.format_messages()
+    response = llm.invoke(prompt_messages)
+    return {'messages' : [HumanMessage(content=response.content)]}
+
+
+def summarizer_agent_node(state: DebateState, team_name: str) -> DebateState:
+    prompt = ChatPromptTemplate.from_template(
+        summarizer_prompt
+    ).partial(
+        team_name=team_name,
+        topic=state["topic"]
+    )
+    chain = prompt | team1_llm if state["current_speaker"] == "Team1" else prompt | team2_llm
     # Invoke the chain with the state
     response = chain.invoke(state)
     return {'messages' : [HumanMessage(content=response.content)]}
 
 
-def antithesis_agent_node(state: DebateState, team_name: str) -> DebateState:
-    prompt = ChatPromptTemplate.from_template(
-        "You are the antithesis agent for {team_name} in the debate on {topic}. "
-        "Generate counter-arguments or challenges based on the current discussion."
-    ).partial(
-        team_name=team_name,
-        topic=state["topic"]
-    )
-    chain = prompt | llm
-    # Invoke the chain with the state
-    response = chain.invoke(state)
-    return {'messages' : [response.content]}
-
-
-def summarizer_agent_node(state: DebateState, team_name: str) -> DebateState:
-    prompt = ChatPromptTemplate.from_template(
-        "You are the speech generator for {team_name} in the debate on {topic}. "
-        "Provide a speech summarizing your team's position based on the current discussion."
-    ).partial(
-        team_name=team_name,
-        topic=state["topic"]
-    )
-    
-    chain = prompt | llm
-    # Invoke the chain with the state
-    response = chain.invoke(state)
-    return {'messages' : [response.content]}
-
-
 def jury_node(state: DebateState) -> DebateState:
     # Use the team1_finalized and team2_finalized directly from the state
-    team1_finalized_text = "\n".join([msg for msg in state["team1_finalized"]])
-    team2_finalized_text = "\n".join([msg for msg in state["team2_finalized"]])
+    team1_finalized_text = "\n".join([msg.content for msg in state["team1_finalized"]])
+    team2_finalized_text = "\n".join([msg.content for msg in state["team2_finalized"]])
 
     # Create the prompt template with placeholders
     prompt_template = ChatPromptTemplate.from_template(
-        "You are the jury evaluating a debate on the topic: {topic}. "
-        "Here are the final arguments from both teams:\n\n"
-        "Team 1 (Affirmative):\n{team1_finalized}\n\n"
-        "Team 2 (Negative):\n{team2_finalized}\n\n"
-        "Based on these arguments, please provide a verdict on which team presented a stronger case."
+        jury_prompt
     ).partial(
         topic=state["topic"],
         team1_finalized=team1_finalized_text,
         team2_finalized=team2_finalized_text
     )
-
     # Convert the prompt into a list of BaseMessages that the LLM can process
     prompt_messages = prompt_template.format_messages()
-
-    # Invoke the LLM with the list of messages
-    response = llm.invoke(prompt_messages)
-
-    return {'messages': [HumanMessage(content=response.content)]}
+    response = jury_llm.invoke(prompt_messages)
+    return {'jury_decision': response.content}
 
 
+tavily_tool = TavilySearchResults(max_results=5)
 
 # Create the graph
 debate_graph = StateGraph(DebateState)
@@ -256,7 +281,7 @@ debate_chain = debate_graph.compile()
 
 # Initialize the debate
 initial_state = DebateState(
-    messages=[HumanMessage(content="Let's start the debate on the topic: AI's impact on job markets")],
+    messages=[HumanMessage(content=topic_statement)],
     topic="AI's impact on job markets",  
     current_speaker="Team2",
     debate_stage="opening_statements",
