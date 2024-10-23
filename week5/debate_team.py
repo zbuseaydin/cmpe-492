@@ -23,11 +23,11 @@ summarizer_prompt = prompts['summarizer_agent'][0]
 jury_prompt = prompts['jury'][0]
 topic_statement = prompts['topic_statement'][0]
 
-team1_llm_name = [*llms][0]
+team1_llm_name = [*llms][1]
 team1_model = llms[team1_llm_name][0]
-team2_llm_name = [*llms][0]
+team2_llm_name = [*llms][1]
 team2_model = llms[team2_llm_name][0]
-jury_llm_name = [*llms][0]
+jury_llm_name = [*llms][1]
 jury_model = llms[jury_llm_name][0]
 
 if team1_llm_name == 'cohere':
@@ -75,10 +75,14 @@ class DebateState(TypedDict):
 def host_node(state: DebateState) -> DebateState:
     current_stage = state["debate_stage"]
     change = {}
+    last_message = None
+    if len(state['messages']) > 1 and state['messages'][-2] != "Passed to the next agent.":
+        last_message = state['messages'][-2]
     
     if current_stage == "opening_statements":
         if state["current_speaker"] == "Team1":
-            change['team1_finalized'] = [state['messages'][-1]] 
+            if last_message:
+                change['team1_finalized'] = [last_message]
             change['next'] = "Team2Supervisor"
             change['current_speaker'] = "Team2"
         else:
@@ -87,21 +91,25 @@ def host_node(state: DebateState) -> DebateState:
             change['current_speaker'] = "Team1"
     elif current_stage == "rebuttal":
         if state["current_speaker"] == "Team1":
-            change['team1_finalized'] = [state['messages'][-1]]
+            if last_message:
+                change['team1_finalized'] = [last_message]
             change['next'] = "Team2Supervisor"
             change['current_speaker'] = "Team2"
         else:
-            change['team2_finalized'] = [state['messages'][-1]]
+            if last_message:
+                change['team2_finalized'] = [last_message]
             change["debate_stage"] = "closing_statements"
             change['next'] = "Team1Supervisor"
             change['current_speaker'] = "Team1"
     elif current_stage == "closing_statements":
         if state["current_speaker"] == "Team1":
-            change['team1_finalized'] = [state['messages'][-1]]
+            if last_message:
+                change['team1_finalized'] = [last_message]
             change['next'] = "Team2Supervisor"
             change['current_speaker'] = "Team2"
         else:
-            change['team2_finalized'] = [state['messages'][-1]]
+            if last_message:
+                change['team2_finalized'] = [last_message]
             change["debate_stage"] = "evaluation"
             change['next'] = "Jury"
     return change
@@ -113,13 +121,16 @@ def team_supervisor_node(state: DebateState) -> DebateState:
     # Determine the opposing team's finalized messages
     if state["current_speaker"] == "Team1":
         opposing_team_finalized = state["team2_finalized"]
+        current_team_finalized = state["team1_finalized"]
         llm = team1_llm
     else:
         opposing_team_finalized = state["team1_finalized"]
+        current_team_finalized = state["team2_finalized"]
         llm = team2_llm
 
     # Convert the finalized messages into a string for the prompt
-    opposing_team_text = "\n".join([msg.content for msg in opposing_team_finalized])
+    opposing_team_text = "\n".join([msg.content for msg in opposing_team_finalized if 'content' in msg])
+    current_team_text = "\n".join([msg.content for msg in current_team_finalized if 'content' in msg])
 
     # Instructions for the supervisor
     agent_instructions = (
@@ -141,12 +152,16 @@ def team_supervisor_node(state: DebateState) -> DebateState:
         topic=state["topic"], 
         stage=state["debate_stage"], 
         agent_instructions=agent_instructions, 
-        opponent_text=opposing_team_text  # Include the opposing team's finalized text
+        opponent_text=opposing_team_text,  # Include the opposing team's finalized text
+        current_team_text=current_team_text
     )
 
     supervisor_chain = prompt | llm.with_structured_output(routeResponse)
     response = supervisor_chain.invoke(state)
-    return {'next': response.next}
+    return {
+        'next': response.next,
+        'messages': ['Passed to the next agent.']
+        }
 
 
 def research_agent_node(state: DebateState, team_name: str) -> DebateState:
@@ -209,8 +224,8 @@ def summarizer_agent_node(state: DebateState, team_name: str) -> DebateState:
 
 def jury_node(state: DebateState) -> DebateState:
     # Use the team1_finalized and team2_finalized directly from the state
-    team1_finalized_text = "\n".join([msg.content for msg in state["team1_finalized"]])
-    team2_finalized_text = "\n".join([msg.content for msg in state["team2_finalized"]])
+    team1_finalized_text = "\n".join([msg.content for msg in state["team1_finalized"] if 'content' in msg])
+    team2_finalized_text = "\n".join([msg.content for msg in state["team2_finalized"] if 'content' in msg])
 
     # Create the prompt template with placeholders
     prompt_template = ChatPromptTemplate.from_template(
