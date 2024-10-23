@@ -15,19 +15,19 @@ load_dotenv()
 
 
 supervisor_agent_instructions = prompts["team_supervisor"]["agent_instructions"][0]
-supervisor_system_prompt = prompts["team_supervisor"]["system"][0]
-supervisor_user_prompt = prompts["team_supervisor"]["user"][0]
+supervisor_system_prompt = prompts["team_supervisor"]["system"][3]
+supervisor_user_prompt = prompts["team_supervisor"]["user"][2]
 research_prompt = prompts['research_agent'][0]
-antithesis_prompt = prompts['antithesis_agent'][0]
+antithesis_prompt = prompts['antithesis_agent'][1]
 summarizer_prompt = prompts['summarizer_agent'][0]
 jury_prompt = prompts['jury'][0]
-topic_statement = prompts['topic_statement'][0]
+topic_statement, topic = prompts['topic_statement'][0]
 
-team1_llm_name = [*llms][1]
+team1_llm_name = [*llms][0]
 team1_model = llms[team1_llm_name][0]
 team2_llm_name = [*llms][1]
-team2_model = llms[team2_llm_name][0]
-jury_llm_name = [*llms][1]
+team2_model = llms[team2_llm_name][1]
+jury_llm_name = [*llms][0]
 jury_model = llms[jury_llm_name][0]
 
 if team1_llm_name == 'cohere':
@@ -76,7 +76,7 @@ def host_node(state: DebateState) -> DebateState:
     current_stage = state["debate_stage"]
     change = {}
     last_message = None
-    if len(state['messages']) > 1 and state['messages'][-2] != "Passed to the next agent.":
+    if len(state['messages']) > 2 and state['messages'][-2] != "Passed to the next agent.":
         last_message = state['messages'][-2]
     
     if current_stage == "opening_statements":
@@ -182,6 +182,7 @@ def research_agent_node(state: DebateState, team_name: str) -> DebateState:
 
 def antithesis_agent_node(state: DebateState, team_name: str) -> DebateState:
     global antithesis_prompt
+    side = sides[state['current_speaker']]
     if state["current_speaker"] == "Team1":
         opposing_team_finalized = state["team2_finalized"]
         current_team_finalized = state["team1_finalized"]
@@ -200,7 +201,8 @@ def antithesis_agent_node(state: DebateState, team_name: str) -> DebateState:
         team_name=team_name,
         topic=state["topic"],
         opponent_text=opposing_team_finalized,
-        current_team_text=current_team_finalized
+        current_team_text=current_team_finalized,
+        side=side
     )
 #    chain = prompt | llm
     # Invoke the chain with the state
@@ -224,8 +226,8 @@ def summarizer_agent_node(state: DebateState, team_name: str) -> DebateState:
 
 def jury_node(state: DebateState) -> DebateState:
     # Use the team1_finalized and team2_finalized directly from the state
-    team1_finalized_text = "\n".join([msg.content for msg in state["team1_finalized"] if 'content' in msg])
-    team2_finalized_text = "\n".join([msg.content for msg in state["team2_finalized"] if 'content' in msg])
+    team1_finalized_text = "\n".join([str(msg) for msg in state["team1_finalized"]])
+    team2_finalized_text = "\n".join([str(msg) for msg in state["team2_finalized"]])
 
     # Create the prompt template with placeholders
     prompt_template = ChatPromptTemplate.from_template(
@@ -297,14 +299,14 @@ debate_chain = debate_graph.compile()
 # Initialize the debate
 initial_state = DebateState(
     messages=[HumanMessage(content=topic_statement)],
-    topic="AI's impact on job markets",  
+    topic=topic,  
     current_speaker="Team2",
     debate_stage="opening_statements",
     next="Host"
 )
 
 # Run the debate
-final_state = debate_chain.invoke(initial_state)
+final_state = debate_chain.invoke(initial_state, {"recursion_limit": 50})
 
 # Print the debate results
 print("Debate Results:")
