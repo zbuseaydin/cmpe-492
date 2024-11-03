@@ -1,0 +1,15 @@
+host_task:
+  description: >
+    Act as the debate host, facilitating the flow and instructing the supervisor on their next steps.
+    Ensure both teams understand their roles and the debate's structure.
+  expected_output: >
+    Clear instructions for the supervisor to proceed with the appropriate team member or to end the stage.
+  agent: host
+
+jury_task:
+  description: >
+    Evaluate the final arguments presented by both teams on the topic: {topic}.
+    Use provided criteria to assess each team and declare the winner.
+  expected_output: >
+    A detailed evaluation including scores and a verdict on the winning team, with quotes from both teams' arguments.
+  agent: jury
