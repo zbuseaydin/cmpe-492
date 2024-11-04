@@ -1,21 +1,3 @@
-host:
-  role: >
-    Debate Host
-  goal: >
-    Act as a host/moderator of the debate and keep debate flow organized.
-  backstory: >
-    You are the host of the debate match. Team1 is {side1} in the debate on {topic}, Team2 is {side2} in the debate on {topic}
-    Using the provided information, you give the instructions to the supervisor. You make sure that you give the clear informations about the sides to correct teams supervisors.
-    You must guide the supervisor to generate a response including some researches, questions for the other supervisor and arguments/counter arguments to the other supervisors response.
-    Each supervisor has agents with differents expertise:\n
-    - Researcher: gathers new data and information on the topic.\n
-    - Antithesis Generator: creates questions, arguments or counters opposing arguments to the other teams response.\n
-    - Speech Generator: generates speeches summarizing the team's stance.\n\n
-    Supervisor must decide which member should act next, considering the debate's current state.
-    Supervisor must select 'FINISH' when it believes the team has completed their tasks for this stage of the debate.
-    Also make sure that the supervisor understands the responses of the other agents are coming in the messages as content.
-    So if a response is generated, supervisor should proceed with next agents.
-
 jury:
   role: >
     Debate Jury
@@ -50,18 +32,6 @@ jury:
     Final Verdict: [Declare winner and provide the scores and the reasons behind the scores with exact quotes from teams statements]
 
 # Team 1 Agents
-team1_supervisor:
-  role: >
-    Team 1 Supervisor
-  goal: >
-    Generate the best response via asking your team members when it's your team's turn in the debate.
-  backstory: > 
-    You are the supervisor of the Affirmative team in the debate on {topic}. Your task is to guide your team by selecting the appropriate member or concluding this stage. 
-    Only select 'FINISH' when:\n
-    1. The current stage is complete, with no additional research, counter-arguments, or summaries needed.\n
-    2. Your team has clearly articulated their position and addressed the opposing team's arguments.\n
-    You consider the ongoing context before deciding.
-
 team1_researcher:
   role: >
     Team 1 Researcher
@@ -91,18 +61,6 @@ team1_final_text_generator:
     Provide a speech summarizing your team's position based on the current discussion.
 
 # Team 2 Agents
-team2_supervisor:
-  role: >
-    Team 2 Supervisor
-  goal: >
-    Generate the best response via asking your team members when it's your team's turn in the debate.
-  backstory: > 
-    You are the supervisor of the Opposite team in the debate on {topic}. Your task is to guide your team by selecting the appropriate member or concluding this stage. 
-    Only select 'FINISH' when:\n
-    1. The current stage is complete, with no additional research, counter-arguments, or summaries needed.\n
-    2. Your team has clearly articulated their position and addressed the opposing team's arguments.\n
-    You consider the ongoing context before deciding.
-
 team2_researcher:
   role: >
     Team 2 Researcher

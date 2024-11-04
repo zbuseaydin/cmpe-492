@@ -1,11 +1,3 @@
-host_task:
-  description: >
-    Act as the debate host, facilitating the flow and instructing the supervisor on their next steps.
-    Ensure both teams understand their roles and the debate's structure. Team1 is on the affirmative, Team2 is on the negative side.
-  expected_output: >
-    Clear instructions for the supervisor to proceed with the appropriate team member or to end the stage.
-  agent: host
-
 jury_task:
   description: >
     Evaluate the final arguments presented by both teams on the topic: {topic}.
@@ -15,14 +7,6 @@ jury_task:
   agent: jury
 
 # Team 1 Tasks
-team1_supervisor_task:
-  description: >
-    Act as the supervisor for Team 1 in the debate.
-    Decide the next action by selecting the appropriate agent (Researcher, Antithesis Generator, or Final Text Generator)
-    based on the debate stage and arguments presented so far.
-  expected_output: >
-    The next agent's role (e.g., Researcher, Antithesis Generator, Speech Generator) or 'FINISH' when the team has completed its response for this stage.
-  agent: team1_supervisor
 
 team1_research_task:
   description: >
@@ -49,14 +33,6 @@ team1_final_text_task:
   agent: team1_final_text_generator
 
 # Team 2 Tasks
-team2_supervisor_task:
-  description: >
-    Act as the supervisor for Team 2 in the debate.
-    Decide the next action by selecting the appropriate agent (Researcher, Antithesis Generator, or Final Text Generator)
-    based on the debate stage and arguments presented so far.
-  expected_output: >
-    The next agent's role (e.g., Researcher, Antithesis Generator, Speech Generator) or 'FINISH' when the team has completed its response for this stage.
-  agent: team2_supervisor
 
 team2_research_task:
   description: >

@@ -1,76 +1,133 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from team_crew import TeamCrew
-
+import yaml
 
 @CrewBase
 class DebateTeamCrew:
-    """Main debate crew coordinating Team1 and Team2 with the host manager."""
-    agents_config = 'config/agents.yaml'
-    tasks_config = 'config/tasks.yaml'
+    """Sequential debate crew where Team 1 agents execute tasks first, followed by Team 2 agents, and finally evaluated by the jury."""
 
-    def __init__(self):
-        # Initialize team crews with their respective configurations
-        self.team1_crew = TeamCrew("Team1")
-        self.team2_crew = TeamCrew("Team2")
+    agents_config = 'config/sequential_agents.yaml'
+    tasks_config = 'config/sequential_tasks.yaml'
 
+    # Team 1 Agents
     @agent
-    def host(self) -> Agent:
-        """Host agent responsible for managing the overall debate."""
+    def team1_researcher(self) -> Agent:
         return Agent(
-            config=self.agents_config['host'],
+            config=self.agents_config['team1_researcher'],
             verbose=True
         )
 
     @agent
+    def team1_antithesis_generator(self) -> Agent:
+        return Agent(
+            config=self.agents_config['team1_antithesis_generator'],
+            verbose=True
+        )
+
+    @agent
+    def team1_final_text_generator(self) -> Agent:
+        return Agent(
+            config=self.agents_config['team1_final_text_generator'],
+            verbose=True
+        )
+
+    # Team 2 Agents
+    @agent
+    def team2_researcher(self) -> Agent:
+        return Agent(
+            config=self.agents_config['team2_researcher'],
+            verbose=True
+        )
+
+    @agent
+    def team2_antithesis_generator(self) -> Agent:
+        return Agent(
+            config=self.agents_config['team2_antithesis_generator'],
+            verbose=True
+        )
+
+    @agent
+    def team2_final_text_generator(self) -> Agent:
+        return Agent(
+            config=self.agents_config['team2_final_text_generator'],
+            verbose=True
+        )
+
+    # Jury Agent
+    @agent
     def jury(self) -> Agent:
-        """Jury agent responsible for evaluating and scoring the debate."""
         return Agent(
             config=self.agents_config['jury'],
             verbose=True
         )
 
+    # Team 1 Tasks
     @task
-    def host_task(self) -> Task:
-        """Task for the Host agent to manage the flow and coordinate teams."""
+    def team1_research_task(self) -> Task:
         return Task(
-            config=self.tasks_config['host_task'],
-            agent=self.host(),
-            next_task=self.determine_next_task  # Decide which team crew to activate
+            config=self.tasks_config['team1_research_task']
         )
 
+    @task
+    def team1_antithesis_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['team1_antithesis_task']
+        )
+
+    @task
+    def team1_final_text_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['team1_final_text_task']
+        )
+
+    # Team 2 Tasks
+    @task
+    def team2_research_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['team2_research_task']
+        )
+
+    @task
+    def team2_antithesis_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['team2_antithesis_task']
+        )
+
+    @task
+    def team2_final_text_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['team2_final_text_task']
+        )
+
+    # Jury Task
     @task
     def jury_task(self) -> Task:
-        """Task for the Jury agent to evaluate the debate and provide a final decision."""
         return Task(
-            config=self.tasks_config['jury_task'],
-            agent=self.jury()
+            config=self.tasks_config['jury_task']
         )
-
-    def determine_next_task(self, state):
-        """
-        Conditional logic to determine which team crew to activate based on the debate state.
-        Instead of directly referencing `Crew` instances as tasks, this function will
-        control which team gets activated.
-        """
-        if state["current_speaker"] == "Team1":
-            # Activate Team1's tasks by managing the flow within Team1's Crew
-            return self.team1_crew.crew().kickoff(inputs=state)
-        elif state["current_speaker"] == "Team2":
-            # Activate Team2's tasks by managing the flow within Team2's Crew
-            return self.team2_crew.crew().kickoff(inputs=state)
-        elif state["debate_stage"] == "evaluation":
-            # Activate the jury task for final evaluation
-            return self.jury_task()
-        return None
 
     @crew
     def crew(self) -> Crew:
-        """Creates the main debate crew with the host as manager."""
+        """Creates a sequential crew for the debate, ending with jury evaluation."""
         return Crew(
-            agents=[self.jury()],  # Automatically includes all agents defined with @agent decorator
-            tasks=self.tasks,  # Only include host and jury tasks
-            process=Process.hierarchical,
-            manager_agent=self.host(),  # Host manages the flow and coordinates both teams
+            agents=[
+                self.team1_researcher(),
+                self.team1_antithesis_generator(),
+                self.team1_final_text_generator(),
+                self.team2_researcher(),
+                self.team2_antithesis_generator(),
+                self.team2_final_text_generator(),
+                self.jury(),  # Jury agent added at the end
+            ],
+            tasks=[
+                self.team1_research_task(),
+                self.team1_antithesis_task(),
+                self.team1_final_text_task(),
+                self.team2_research_task(),
+                self.team2_antithesis_task(),
+                self.team2_final_text_task(),
+                self.jury_task(),  # Jury task added at the end
+            ],
+            process=Process.sequential,  # Sequential process
             verbose=True
         )
