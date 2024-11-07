@@ -1,0 +1,32 @@
+IBM Debater(R): Wikipedia Category Stance
+
+New releases: 
+- 19.11.17: Added a new column to the released data file (Column D) with the URL of the Wikipedia page of each category or list. 
+
+DataSet: IBM Debater (R): Wikipedia Category Stance
+
+The dataset contains:
+    1. 132 concepts 
+    2. 4603 Wikipedia categories and lists annotated for stance (Pro/Con) towards the concepts
+
+The released data file has 4 columns:
+    Column A: the label
+    Column B: the concept
+    Column C: the page title of the category or list in Wikipedia
+
+For each category, the label is one of the following:
+1.	“-”  – The category is not a person group category
+2.	“P” – Pro stance (supporting the concept)
+3.	“C” – Con stance (opposing the concept)
+4.	“?”  – The stance cannot be determined based on the category name, or the category is not relevant.
+5.	“X” –  Unresolved case: each of the 3 annotators gave a different label 
+
+The data is described in: 
+Orith Toledo-Ronen, Roy Bar-Haim, Noam Slonim. “Expert Stance Graphs for Computational Argumentation”. In Proc. of the 3rd Workshop on Argument Mining, ACL, 2016.
+Please cite this paper if you use the dataset.
+
+The dataset includes:
+    1. ReleaseNotes.txt - release notes file describing the data
+    2. WikipediaCategoriesResults.csv – the dataset
+    3. WikipediaCategoriesLabeling.docx - the guidelines used for labeling the data 
+
