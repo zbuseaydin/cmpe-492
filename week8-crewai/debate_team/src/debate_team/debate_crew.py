@@ -1,6 +1,5 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-import yaml
 
 @CrewBase
 class DebateTeamCrew:
@@ -65,45 +64,57 @@ class DebateTeamCrew:
     @task
     def team1_research_task(self) -> Task:
         return Task(
-            config=self.tasks_config['team1_research_task']
+            config=self.tasks_config['team1_research_task'],
+			output_file='team1_research.md'
         )
 
     @task
     def team1_antithesis_task(self) -> Task:
         return Task(
-            config=self.tasks_config['team1_antithesis_task']
+            config=self.tasks_config['team1_antithesis_task'],
+			output_file='team1_arguments.md',
+            context=[self.team1_research_task()]
         )
 
     @task
     def team1_final_text_task(self) -> Task:
         return Task(
-            config=self.tasks_config['team1_final_text_task']
+            config=self.tasks_config['team1_final_text_task'],
+			output_file='team1_final.md',
+            context=[self.team1_research_task(), self.team1_antithesis_task()]
         )
 
     # Team 2 Tasks
     @task
     def team2_research_task(self) -> Task:
         return Task(
-            config=self.tasks_config['team2_research_task']
+            config=self.tasks_config['team2_research_task'],
+			output_file='team2_research.md'
         )
 
     @task
     def team2_antithesis_task(self) -> Task:
         return Task(
-            config=self.tasks_config['team2_antithesis_task']
+            config=self.tasks_config['team2_antithesis_task'],
+			output_file='team2_arguments.md',
+            context=[self.team2_research_task()]
         )
 
     @task
     def team2_final_text_task(self) -> Task:
         return Task(
-            config=self.tasks_config['team2_final_text_task']
+            config=self.tasks_config['team2_final_text_task'],
+			output_file='team2_final.md',
+            context=[self.team2_research_task(), self.team2_antithesis_task()]
         )
 
     # Jury Task
     @task
     def jury_task(self) -> Task:
         return Task(
-            config=self.tasks_config['jury_task']
+            config=self.tasks_config['jury_task'],
+			output_file='jury_decision.md',
+            context=[self.team1_final_text_task(), self.team2_final_text_task()]
         )
 
     @crew
@@ -129,5 +140,6 @@ class DebateTeamCrew:
                 self.jury_task(),  # Jury task added at the end
             ],
             process=Process.sequential,  # Sequential process
-            verbose=True
+            verbose=True,
+            output_log_file=True
         )

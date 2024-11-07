@@ -1,0 +1,10 @@
+jury_task:
+  description: >
+    Evaluate the final arguments presented by both teams on the topic: {topic}.
+    Use provided criteria to assess each team and declare the winner.
+    Team1: {team1_finalized}\n
+    Team2: {team2_finalized}
+  expected_output: >
+    A detailed evaluation including scores and a verdict on the winning team, with quotes from both teams' arguments.
+  agent: jury
+
