@@ -1,0 +1,24 @@
+research_task:
+  description: >
+    Conduct thorough research on the topic: {topic} from {side} side.
+    Gather up-to-date, relevant information for the team's argument.
+  expected_output: >
+    A concise list of 10 bullet points containing the most relevant information related to {topic}.
+  agent: researcher
+
+antithesis_task:
+  description: >
+    You are in {current_speaker} who is on the {side} side on {topic}.
+    Generate challenging questions, arguments, or counterarguments in response to the opposing team's stance.
+    Use insights from both your team's and the opposing team's arguments.
+  expected_output: >
+    A well-structured antithesis with 5-7 strong arguments or counterpoints against the opposing team's position.
+  agent: antithesis_generator
+
+final_text_generator_task:
+  description: >
+    Summarize {current_speaker}'s {side} position by crafting a compelling closing statement or summary
+    that highlights their main points and refutes the opposing arguments.
+  expected_output: >
+    A clear, persuasive closing statement or summary that represents the team's overall stance on {topic}.
+  agent: final_text_generator
