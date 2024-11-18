@@ -54,18 +54,18 @@ class DebateFlow(Flow[DebateState]):
             if itr==2:
                 self.finalize_debate()
                 return
-            if self.state.current_speaker == "team1":
-                result = self.team1_crew.crew().kickoff(inputs=self.state.get_dict_version())
+            if self.state.current_speaker == "team1":                
                 print("------------------team1------------------")
-                #with open('res_team1.txt', 'w') as f:
-                #    f.write(result)
+                result = self.team1_crew.crew().kickoff(inputs=self.state.get_dict_version())
+                with open('team1_finalized.txt', 'a') as f:
+                    f.write(result.raw)
                 self.state.team1_finalized += result.raw
                 self.state.current_speaker = "team2"
             elif self.state.current_speaker == "team2":
-                result = self.team2_crew.crew().kickoff(inputs=self.state.get_dict_version())
-                #with open('res_team2.txt', 'w') as f:
-                #    f.write(result)
                 print("------------------team2------------------")
+                result = self.team2_crew.crew().kickoff(inputs=self.state.get_dict_version())
+                with open('team2_finalized.txt', 'a') as f:
+                    f.write(result.raw)
                 self.state.team2_finalized += result.raw
                 self.state.current_speaker = "team1"                
             itr += 1
@@ -76,19 +76,19 @@ class DebateFlow(Flow[DebateState]):
         result = self.debate_team_crew.crew().kickoff(inputs=self.state.get_dict_version())
         # Save the final decision to the state for reference
         print(f"Jury Decision: {self.state.jury_decision}")
-        with open("debate_results_0.txt", "w") as f:
-            f.write(f"Debate on {self.state.topic}\nJury Decision: {result}")
-        with open("debate_results_1.txt", "w") as f:
-            f.write(f"Debate on {self.state.topic}\nJury Decision: {result.raw}")
         with open("debate_results.txt", "w") as f:
-            f.write(f"Debate on {self.state.topic}\nJury Decision: {self.state.jury_decision}")
+            f.write(f"Debate on {self.state.topic}\nJury Decision: {result}")
         print(f"Jury Decision: {result.raw}")
-
 
 
 def kickoff():
     debate_flow = DebateFlow()
     debate_flow.start_debate()
+
+
+def plot():
+    poem_flow = DebateFlow()
+    poem_flow.plot()
 
 
 # Kickoff the DebateFlow
