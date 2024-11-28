@@ -1,0 +1,63 @@
+{
+    "typeOptions": [
+        "pedestrians-vs-pedestrians",
+        "pedestrians-ahead-vs-passengers",
+        "passengers-vs-pedestrians-other-lane"
+    ],
+    "legalStatusOptions": [
+        "none",
+        "legal-crossing",
+        "illegal-crossing"
+    ],
+    "characterOptions": [
+        "Man",
+        "Woman",
+        "Boy",
+        "Girl",
+        "Old Man",
+        "Old Woman",
+        "Large Man",
+        "Large Woman",
+        "Male Executive",
+        "Female Executive",
+        "Male Doctor",
+        "Female Doctor",
+        "Male Athlete",
+        "Female Athlete",
+        "Pregnant Woman",
+        "Homeless Person",
+        "Criminal",
+        "Baby",
+        "Dog",
+        "Cat"        
+    ],
+    "scenarios": [
+        {
+            "id": 1,
+            "name": "Basic Pedestrian Dilemma",
+            "type": "pedestrians-vs-pedestrians",
+            "legalStatus": "none",
+            "left": {
+                "Man": 1,
+                "Woman": 1
+            },
+            "right": {
+                "Man": 2
+            }
+        },
+        {
+            "id": 2,
+            "name": "Legal vs Illegal Crossing",
+            "type": "pedestrians-vs-pedestrians",
+            "legalStatus": "legal-crossing",
+            "left": {
+                "Man": 1,
+                "Woman": 1
+            },
+            "right": {
+                "Man": 1,
+                "Woman": 1
+            }
+        }
+    ]
+}
