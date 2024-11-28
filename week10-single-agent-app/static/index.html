@@ -552,20 +552,29 @@
                 return;
             }
             
-            const response = await fetch('/analyze-scenario', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(selectedScenario)
-            });
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            loadingOverlay.style.display = 'flex';
             
-            const result = await response.json();
-            results = [{
-                name: selectedScenario.name,
-                scenario: selectedScenario,
-                result: result
-            }];
-            
-            showResults();
+            try {
+                const response = await fetch('/analyze-scenario', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(selectedScenario)
+                });
+                
+                const result = await response.json();
+                results = [{
+                    name: selectedScenario.name,
+                    scenario: selectedScenario,
+                    result: result
+                }];
+                
+                showResults();
+            } catch (error) {
+                alert('Error running scenario: ' + error.message);
+            } finally {
+                loadingOverlay.style.display = 'none';
+            }
         }
 
         async function runAllScenarios() {
