@@ -1,19 +1,12 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.responses import StreamingResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from typing import List, Optional
-from langchain_openai import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-from langchain.callbacks import StreamingStdOutCallbackHandler
-import os
 from dotenv import load_dotenv
 import json
-import csv
-from datetime import datetime
 import time
+from single_agent import SingleAgent
 
 # Load environment variables
 load_dotenv()
@@ -61,94 +54,12 @@ async def analyze_scenario(scenario: Scenario):
     with open('config.json', 'r') as f:
         config = json.load(f)
     
-    llm = ChatOpenAI(
-        **config['llm'],
-        callbacks=[StreamingStdOutCallbackHandler()]
-    )
-    
-    prompt = ChatPromptTemplate.from_template(config['prompt_template'])
-    
-    # Format group descriptions
-    def format_group(group_dict):
-        parts = [f"{count} {character}" 
-                 for character, count in group_dict.items() 
-                 if count > 0]
-        total = sum(group_dict.values())
-        return " + ".join(parts) + f" = {total} life in total"
-    
-    # Add a new function for CSV formatting
-    def format_group_csv(group_dict):
-        parts = [f"{count} {character}" 
-                 for character, count in group_dict.items() 
-                 if count > 0]
-        total = sum(group_dict.values())
-        return " ".join(parts) + f" ({total} total)"
-    
-    chain = prompt | llm | StrOutputParser()
+    # Initialize the agent
+    agent = SingleAgent(config)
     
     async def generate_response():
-        response = await chain.ainvoke({
-            "scenario_type": scenario.type,
-            "legal_status": scenario.legalStatus,
-            "left_desc": format_group(scenario.left),
-            "right_desc": format_group(scenario.right)
-        })
-        
-        try:
-            response = response.strip()
-            response = response.replace('```json', '').replace('```', '')
-            parsed_response = json.loads(response)
-            
-            runtime = round(time.time() - start_time, 4)
-            parsed_response['runtime'] = f"{runtime}s"
-            
-            # Save to CSV
-            csv_file = 'scenario_responses.csv'
-            file_exists = os.path.isfile(csv_file)
-            
-            with open(csv_file, 'a', newline='') as f:
-                writer = csv.writer(f)
-                if not file_exists:
-                    writer.writerow(['timestamp', 'model', 'temperature', 'scenario_type', 'legal_status', 
-                                   'left_group', 'right_group', 'decision', 'reason', 'runtime'])
-                
-                writer.writerow([
-                    datetime.now().isoformat(),
-                    config['llm']['model'],
-                    config['llm']['temperature'],
-                    scenario.type,
-                    scenario.legalStatus,
-                    format_group_csv(scenario.left),
-                    format_group_csv(scenario.right),
-                    parsed_response['decision'],
-                    parsed_response['reason'],
-                    runtime
-                ])
-            
-            yield json.dumps(parsed_response)
-        except json.JSONDecodeError as e:
-            runtime = round(time.time() - start_time, 4)
-            error_response = {
-                "decision": "ERROR",
-                "reason": f"Failed to parse AI response: {str(e)}",
-                "runtime": f"{runtime}s"
-            }
-            
-            # Save error to CSV as well
-            with open('scenario_responses.csv', 'a', newline='') as f:
-                writer = csv.writer(f)
-                writer.writerow([
-                    datetime.now().isoformat(),
-                    scenario.type,
-                    scenario.legalStatus,
-                    format_group_csv(scenario.left),
-                    format_group_csv(scenario.right),
-                    error_response['decision'],
-                    error_response['reason'],
-                    error_response['runtime']
-                ])
-            
-            yield json.dumps(error_response)
+        result = await agent.analyze(scenario, start_time)
+        yield json.dumps(result)
     
     return StreamingResponse(generate_response(), media_type="application/json")
 
