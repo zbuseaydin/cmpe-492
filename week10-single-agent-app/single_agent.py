@@ -1,5 +1,6 @@
 import json
 import time
+import random
 import asyncio
 import pdfplumber
 from dotenv import load_dotenv
@@ -17,6 +18,39 @@ from langchain_community.document_loaders import DirectoryLoader
 import formatter_methods as formatter
 
 load_dotenv()
+
+
+def generate_characteristic():
+    roles = [
+        "Philosopher", "Refugee", "Rebel", "Survivalist", "Mediator",
+        "Adventurer", "Caregiver", "AI Mathematician", "Scientist", "Engineer", "Statistician",
+        "Social Worker", "Parent", "Doctor", "Entrepreneur", "Explorer", "Firefighter",
+        "Politician", "Commander", "CEO", "Artist", "Writer", "Actor", "Ethicist",
+        "Historian", "Theologian", "Hunter", "Nomad", "Fisherman",
+        "Judge", "Teacher", "Merchant", "Warrior", "Spy",
+    ]
+
+    genders = ["Male", "Female", "Non-binary", "Neutral"]
+    education_levels = ["None", "High School", "Undergraduate", "Graduate", "Postgraduate"]
+    age_range = range(5, 100)
+    calmness = round(random.uniform(0, 1), 2)
+    empathy = round(random.uniform(0, 1), 2)
+    analytical_thinking = round(random.uniform(0, 1), 2)
+    risk_tolerance = round(random.uniform(0, 1), 2)
+    decisiveness = round(random.uniform(0, 1), 2)
+    agent_attributes = {
+        "role": random.choice(roles),
+        "gender": random.choice(genders),
+        "age": random.choice(age_range),
+        "education_level": random.choice(education_levels),
+        "calmness": calmness,
+        "empathy": empathy,
+        "analytical_thinking": analytical_thinking,
+        "risk_tolerance": risk_tolerance,
+        "decisiveness": decisiveness
+    }
+    
+    return agent_attributes
 
 
 class SentenceTransformersEmbeddings:
@@ -112,7 +146,7 @@ class SingleAgent:
 
         if self.use_rag:
             prompt = PromptTemplate(
-                template=config['prompt_template_with_role'],
+                template=config['prompt_sentence_with_role'],
                 input_variables=["context", "question"],
                 partial_variables=input_dict,
                 output_parser=StrOutputParser()
@@ -120,7 +154,7 @@ class SingleAgent:
             rag_chain = {"context": self.retriever | formatter.format_docs, "question": RunnablePassthrough()} | prompt | self.llm | StrOutputParser()
             response = await rag_chain.ainvoke({"question": "What is relevant to the ethical concerns while making a decision for moral machine experiment?"})
         else:
-            prompt = ChatPromptTemplate.from_template(config['prompt_template_with_role'])
+            prompt = ChatPromptTemplate.from_template(config['prompt_sentence_with_role'])
             chain = (prompt | self.llm | StrOutputParser())
             response = await chain.ainvoke(input_dict)
         
@@ -155,7 +189,7 @@ class SingleAgent:
 if __name__ == "__main__":
     with open('config.json', 'r') as f:
         config = json.load(f)
-
+    config['agent_attributes'] = generate_characteristic()
     # Create an instance of the SingleAgent class
     agent = SingleAgent(config)
 
@@ -171,8 +205,8 @@ if __name__ == "__main__":
     scenario = Scenario(
         scenario_type="-",
         legal_status=None,
-        left={"Pregnant Woman": 2},
-        right={"Baby": 2}
+        left={"Large Man": 2},
+        right={"Male Athlete": 2}
     )
 
     # Start time to measure runtime
@@ -181,4 +215,3 @@ if __name__ == "__main__":
     # Analyze the scenario
     response = asyncio.run(agent.analyze(scenario, start_time))
     # Output the result
-    print(response)
