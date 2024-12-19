@@ -89,60 +89,59 @@ class ScenarioGenerator:
         return scenarios
 
 class MoralMachineExperiment:
-    def __init__(self, imported_config, scenarios):
+    def __init__(self, imported_config, scenarios, prompt_template):
         self.config = imported_config
         self.scenarios = scenarios
         self.setup_agent()
-
             
     def setup_agent(self):
         self.agent = ChatOpenAI(
             **self.config['llm'],
             callbacks=[StreamingStdOutCallbackHandler()]
         )
-        self.prompt = ChatPromptTemplate.from_template(self.config['prompt_template'])
+        self.prompt = ChatPromptTemplate.from_template(self.config['prompt_templates'][prompt_template])
         self.chain = self.prompt | self.agent | StrOutputParser()
 
-    async def run_experiment(self):
+    async def run_experiment(self, analyzing_attribute):
         results = []
-        for scenario in self.scenarios:
-            # Run each scenario 3 times
-            scenario_results = []
-            for i in range(3):
-                start_time = time.time()
-                result = await self.analyze_scenario(scenario, start_time)
-                scenario_results.append(result)
-            
-            # Calculate mean results
-            decisions = [r['decision'] for r in scenario_results]
-            most_common_decision = max(set(decisions), key=decisions.count)
-            
-            # Get the reason corresponding to the most common decision
-            reason = next(r['reason'] for r in scenario_results 
-                         if r['decision'] == most_common_decision)
-            
-            # Calculate average runtime
-            avg_runtime = sum(float(r['runtime'].rstrip('s')) for r in scenario_results) / 3
-            
-            # Combine the results
-            aggregated_result = {
-                "decision": most_common_decision,
-                "individual_decisions": decisions,
-                "consistency": (decisions.count(most_common_decision) / 3) * 100,  # as percentage
-                "reason": reason,  # using reason from the most common decision
-                "runtime": f"{avg_runtime:.4f}s",
-                "raw_results": scenario_results  # keeping original results for reference
-            }
-
-            results.append({
-                "scenario": scenario,
-                "result": aggregated_result,
-                "agent_config": {
-                    "attributes": self.config["attributes"],
-                    "llm": self.config["llm"]
+        for j in range(5):
+            for scenario in self.scenarios:
+                # Run each scenario 3 times
+                scenario_results = []
+                for _ in range(3):
+                    start_time = time.time()
+                    result = await self.analyze_scenario(scenario, start_time, j)
+                    scenario_results.append(result)
+                
+                # Calculate mean results
+                decisions = [r['decision'] for r in scenario_results]
+                most_common_decision = max(set(decisions), key=decisions.count)
+                
+                # Get the reason corresponding to the most common decision
+                reason = next(r['reason'] for r in scenario_results 
+                            if r['decision'] == most_common_decision)
+                
+                # Calculate average runtime
+                avg_runtime = sum(float(r['runtime'].rstrip('s')) for r in scenario_results) / 3
+                
+                # Combine the results
+                aggregated_result = {
+                    "decision": most_common_decision,
+                    "individual_decisions": decisions,
+                    "consistency": (decisions.count(most_common_decision) / 3) * 100,  # as percentage
+                    "reason": reason,  # using reason from the most common decision
+                    "runtime": f"{avg_runtime:.4f}s",
+                    "raw_results": scenario_results  # keeping original results for reference
                 }
-            })
-            break
+
+                results.append({
+                    "scenario": scenario,
+                    "result": aggregated_result,
+                    "agent_config": {
+                        "attributes": self.config["attributes"][analyzing_attribute][j],
+                        "llm": self.config["llm"]
+                    }
+                })
         return results
 
     def save_results(self, results: List[Dict]):
@@ -154,7 +153,7 @@ class MoralMachineExperiment:
         
         print(f"Results saved to {filename}")
 
-    async def analyze_scenario(self, scenario, start_time):
+    async def analyze_scenario(self, scenario, start_time, agent_index):
         # Format the scenario descriptions
         left_desc = json.dumps({
             "total number of fatalities": sum(scenario["left"].values()),
@@ -175,8 +174,8 @@ class MoralMachineExperiment:
             "agent_age": self.config["attributes"]["age"],
             "agent_education_level": self.config["attributes"]["education_level"],
             "agent_empathy": self.config["attributes"]["empathy"],
-            "agent_political_orientation": self.config["attributes"]["political_orientation"],
-            "agent_religious_orientation": self.config["attributes"]["religious_orientation"]
+            "agent_political_orientation": self.config["attributes"]["political_orientations"][agent_index],
+            "agent_religious_orientation": self.config["attributes"]["religious_orientations"][agent_index]
         }
 
         try:
@@ -218,25 +217,30 @@ async def main():
     # Generate scenarios
     scenario_gen = ScenarioGenerator()
     scenarios = scenario_gen.generate_all_scenarios()
+    #analyzing_attribute = "political_orientations"
+    #prompt_template = "political"
+    analyzing_attributes = ["political_orientations", "religious_orientations", "education_level", "age", "empathy"]
+    prompt_templates = ["political", "religious", "education", "age", "empathy"]
     
     # Save generated scenarios
     with open('generated_scenarios.json', 'w') as f:
         json.dump(scenarios, f, indent=2)
 
     # Run experiment with manual config
-    experiment = MoralMachineExperiment(imported_config, scenarios)
-    results = await experiment.run_experiment()
-    
-    # Save results with metadata
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output = {
-        "timestamp": timestamp,
-        "results": results
-    }
-    # Create experiments directory if it doesn't exist
-    os.makedirs('experiments', exist_ok=True)
-    with open(f'experiments/experiment_results_{timestamp}.json', 'w') as f:
-        json.dump(output, f, indent=2)
+    for exp_index in range(5):
+        experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
+        results = await experiment.run_experiment(analyzing_attributes[exp_index])
+        
+        # Save results with metadata
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output = {
+            "timestamp": timestamp,
+            "results": results
+        }
+        # Create experiments directory if it doesn't exist
+        os.makedirs('experiments', exist_ok=True)
+        with open(f'experiments/{prompt_templates[exp_index]}_experiment_results_{timestamp}.json', 'w') as f:
+            json.dump(output, f, indent=2)
 
 if __name__ == "__main__":
     asyncio.run(main())
