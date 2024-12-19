@@ -1,0 +1,20 @@
+gender: male, female
+education level: pre-highschool, highsch, attended college, bachelors, graduate
+annual income:
+age
+willing to buy a self car -1...1
+fear of machines become out of control -1...1
+moral machine decisions will be used in self driving cars -1...1
+can you trust machines in future -1...1
+species
+social value doctor - thief
+age
+saving more lives
+intervention
+fiitness
+protecting passengers
+gender preference
+upholding the law
+
+political views? conservative...progressive
+religious? not...yes

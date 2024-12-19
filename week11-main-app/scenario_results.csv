@@ -1,0 +1,7 @@
+scenario_name,single_agent_decision,multi_agents_decision,human_result
+Fit vs Fat Comparison,1,1,0.65
+Young vs Old Comparison,0,1,0.45
+Male vs Female Comparison,1,1,0.48
+Social Status Comparison,0,1,0.55
+Animal vs Person Comparison,1,1,0.82
+Few vs More Comparison,1,1,0.25

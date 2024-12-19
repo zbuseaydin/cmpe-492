@@ -1,0 +1,126 @@
+{
+    "typeOptions": [
+        "pedestrians-vs-pedestrians",
+        "pedestrians-ahead-vs-passengers",
+        "passengers-vs-pedestrians-other-lane"
+    ],
+    "legalStatusOptions": [
+        "none",
+        "legal-crossing",
+        "illegal-crossing"
+    ],
+    "characterOptions": [
+        "Man",
+        "Woman",
+        "Boy",
+        "Girl",
+        "Old Man",
+        "Old Woman",
+        "Fat Man",
+        "Fat Woman",
+        "Male Executive",
+        "Female Executive",
+        "Male Doctor",
+        "Female Doctor",
+        "Male Athlete",
+        "Female Athlete",
+        "Pregnant Woman",
+        "Homeless Person",
+        "Criminal",
+        "Baby",
+        "Dog",
+        "Cat"
+    ],
+    "scenarios": [
+        {
+            "id": 1,
+            "name": "Fit vs Fat Comparison",
+            "type": "pedestrians-vs-pedestrians",
+            "legalStatus": "none",
+            "left": {
+                "Male Athlete": 2
+            },
+            "right": {
+                "Fat Man": 2
+            },
+            "attributeLevel": "Body Type",
+            "attributeLeft": "Fit",
+            "attributeRight": "Fat"
+        },
+        {
+            "id": 2,
+            "name": "Young vs Old Comparison",
+            "type": "pedestrians-vs-pedestrians",
+            "legalStatus": "none",
+            "left": {
+                "Man": 2
+            },
+            "right": {
+                "Old Man": 2
+            },
+            "attributeLevel": "Age",
+            "attributeLeft": "Young",
+            "attributeRight": "Old"
+        },
+        {
+            "id": 3,
+            "name": "Male vs Female Comparison",
+            "type": "pedestrians-vs-pedestrians",
+            "legalStatus": "none",
+            "left": {
+                "Man": 2
+            },
+            "right": {
+                "Woman": 2
+            },
+            "attributeLevel": "Gender",
+            "attributeLeft": "Male",
+            "attributeRight": "Female"
+        },
+        {
+            "id": 4,
+            "name": "Social Status Comparison",
+            "type": "pedestrians-vs-pedestrians",
+            "legalStatus": "none",
+            "left": {
+                "Male Executive": 2
+            },
+            "right": {
+                "Homeless Person": 2
+            },
+            "attributeLevel": "Social Status",
+            "attributeLeft": "High",
+            "attributeRight": "Low"
+        },
+        {
+            "id": 5,
+            "name": "Animal vs Person Comparison",
+            "type": "pedestrians-vs-pedestrians",
+            "legalStatus": "none",
+            "left": {
+                "Man": 2
+            },
+            "right": {
+                "Dog": 2
+            },
+            "attributeLevel": "Species",
+            "attributeLeft": "Human",
+            "attributeRight": "Animal"
+        },
+        {
+            "id": 6,
+            "name": "Few vs More Comparison",
+            "type": "pedestrians-vs-pedestrians",
+            "legalStatus": "none",
+            "left": {
+                "Man": 1
+            },
+            "right": {
+                "Man": 5
+            },
+            "attributeLevel": "Quantity",
+            "attributeLeft": "Few",
+            "attributeRight": "More"
+        }
+    ]
+}
