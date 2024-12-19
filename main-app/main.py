@@ -92,9 +92,9 @@ class MoralMachineExperiment:
     def __init__(self, imported_config, scenarios, prompt_template):
         self.config = imported_config
         self.scenarios = scenarios
-        self.setup_agent()
+        self.setup_agent(prompt_template)
             
-    def setup_agent(self):
+    def setup_agent(self, prompt_template):
         self.agent = ChatOpenAI(
             **self.config['llm'],
             callbacks=[StreamingStdOutCallbackHandler()]
@@ -227,20 +227,21 @@ async def main():
         json.dump(scenarios, f, indent=2)
 
     # Run experiment with manual config
-    for exp_index in range(5):
-        experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
-        results = await experiment.run_experiment(analyzing_attributes[exp_index])
-        
-        # Save results with metadata
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output = {
-            "timestamp": timestamp,
-            "results": results
-        }
-        # Create experiments directory if it doesn't exist
-        os.makedirs('experiments', exist_ok=True)
-        with open(f'experiments/{prompt_templates[exp_index]}_experiment_results_{timestamp}.json', 'w') as f:
-            json.dump(output, f, indent=2)
+#    for exp_index in range(5):
+    exp_index = 1
+    experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
+    results = await experiment.run_experiment(analyzing_attributes[exp_index])
+    
+    # Save results with metadata
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output = {
+        "timestamp": timestamp,
+        "results": results
+    }
+    # Create experiments directory if it doesn't exist
+    os.makedirs('experiments', exist_ok=True)
+    with open(f'experiments/{prompt_templates[exp_index]}_experiment_results_{timestamp}.json', 'w') as f:
+        json.dump(output, f, indent=2)
 
 if __name__ == "__main__":
     asyncio.run(main())
