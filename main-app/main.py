@@ -171,9 +171,9 @@ class MoralMachineExperiment:
         variables = {
             "left_desc": left_desc,
             "right_desc": right_desc,
-            "agent_age": self.config["attributes"]["age"],
-            "agent_education_level": self.config["attributes"]["education_level"],
-            "agent_empathy": self.config["attributes"]["empathy"],
+            "agent_age": self.config["attributes"]["age"][agent_index],
+            "agent_education_level": self.config["attributes"]["education_level"][agent_index],
+            "agent_empathy": self.config["attributes"]["empathy"][agent_index],
             "agent_political_orientation": self.config["attributes"]["political_orientations"][agent_index],
             "agent_religious_orientation": self.config["attributes"]["religious_orientations"][agent_index]
         }
@@ -228,7 +228,7 @@ async def main():
 
     # Run experiment with manual config
 #    for exp_index in range(5):
-    exp_index = 1
+    exp_index = 2
     experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
     results = await experiment.run_experiment(analyzing_attributes[exp_index])
     
