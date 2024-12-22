@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Young vs Old Comparison",
+    "type": "pedestrians-vs-pedestrians",
+    "legalStatus": "none",
+    "left": {
+      "Man": 2
+    },
+    "right": {
+      "Old Man": 2
+    },
+    "attributeLevel": "Age",
+    "attributeLeft": "Man",
+    "attributeRight": "Old Man"
+  },
+  {
+    "name": "Male vs Female Comparison",
+    "type": "pedestrians-vs-pedestrians",
+    "legalStatus": "none",
+    "left": {
+      "Man": 2
+    },
+    "right": {
+      "Woman": 2
+    },
+    "attributeLevel": "Gender",
+    "attributeLeft": "Man",
+    "attributeRight": "Woman"
+  },
+  {
+    "name": "Few vs More Comparison",
+    "type": "pedestrians-vs-pedestrians",
+    "legalStatus": "none",
+    "left": {
+      "Man": 1
+    },
+    "right": {
+      "Man": 5
+    },
+    "attributeLevel": "Quantity",
+    "attributeLeft": "Man",
+    "attributeRight": "Man"
+  },
+  {
+    "name": "High vs Low Status Comparison",
+    "type": "pedestrians-vs-pedestrians",
+    "legalStatus": "none",
+    "left": {
+      "Male Executive": 2
+    },
+    "right": {
+      "Homeless Person": 2
+    },
+    "attributeLevel": "Social Status",
+    "attributeLeft": "Male Executive",
+    "attributeRight": "Homeless Person"
+  },
+  {
+    "name": "Human vs Pet Comparison",
+    "type": "pedestrians-vs-pedestrians",
+    "legalStatus": "none",
+    "left": {
+      "Man": 2
+    },
+    "right": {
+      "Dog": 2
+    },
+    "attributeLevel": "Species",
+    "attributeLeft": "Man",
+    "attributeRight": "Dog"
+  },
+  {
+    "name": "Fit vs Fat Comparison",
+    "type": "pedestrians-vs-pedestrians",
+    "legalStatus": "none",
+    "left": {
+      "Male Athlete": 2
+    },
+    "right": {
+      "Fat Man": 2
+    },
+    "attributeLevel": "Fitness",
+    "attributeLeft": "Male Athlete",
+    "attributeRight": "Fat Man"
+  }
+]
