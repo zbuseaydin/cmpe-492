@@ -21,7 +21,7 @@ class ScenarioGenerator:
         self.scenario_types = {
             "age": {"young": "Man", "old": "Old Man"},
             "gender": {"male": "Man", "female": "Woman"},
-            "utilitarian": {"few": 1, "more": 5},
+            "utilitarian": {"few": "Man", "more": "Man"},
             "social_status": {"high": "Male Executive", "low": "Homeless Person"},
             "species": {"human": "Man", "pet": "Dog"},
             "fitness": {"fit": "Male Athlete", "fat": "Fat Man"}
@@ -104,13 +104,15 @@ class MoralMachineExperiment:
 
     async def run_experiment(self, analyzing_attribute):
         results = []
-        for j in range(5):
+        attribute_values = self.config["attributes"][analyzing_attribute]
+
+        for j in range(len(attribute_values)):
             for scenario in self.scenarios:
                 # Run each scenario 3 times
                 scenario_results = []
                 for _ in range(3):
                     start_time = time.time()
-                    result = await self.analyze_scenario(scenario, start_time, j)
+                    result = await self.analyze_scenario(scenario, start_time, analyzing_attribute, attribute_values[j])
                     scenario_results.append(result)
                 
                 # Calculate mean results
@@ -138,7 +140,7 @@ class MoralMachineExperiment:
                     "scenario": scenario,
                     "result": aggregated_result,
                     "agent_config": {
-                        "attributes": self.config["attributes"][analyzing_attribute][j],
+                        f"attribute {analyzing_attribute}": attribute_values[j],
                         "llm": self.config["llm"]
                     }
                 })
@@ -153,7 +155,7 @@ class MoralMachineExperiment:
         
         print(f"Results saved to {filename}")
 
-    async def analyze_scenario(self, scenario, start_time, agent_index):
+    async def analyze_scenario(self, scenario, start_time, attribute_name, attribute_value):
         # Format the scenario descriptions
         left_desc = json.dumps({
             "total number of fatalities": sum(scenario["left"].values()),
@@ -171,11 +173,7 @@ class MoralMachineExperiment:
         variables = {
             "left_desc": left_desc,
             "right_desc": right_desc,
-            "agent_age": self.config["attributes"]["age"][agent_index],
-            "agent_education_level": self.config["attributes"]["education_level"][agent_index],
-            "agent_empathy": self.config["attributes"]["empathy"][agent_index],
-            "agent_political_orientation": self.config["attributes"]["political_orientations"][agent_index],
-            "agent_religious_orientation": self.config["attributes"]["religious_orientations"][agent_index]
+            f"agent_{attribute_name}": attribute_value
         }
 
         try:
@@ -217,31 +215,29 @@ async def main():
     # Generate scenarios
     scenario_gen = ScenarioGenerator()
     scenarios = scenario_gen.generate_all_scenarios()
-    #analyzing_attribute = "political_orientations"
-    #prompt_template = "political"
-    analyzing_attributes = ["political_orientations", "religious_orientations", "education_level", "age", "empathy"]
-    prompt_templates = ["political", "religious", "education", "age", "empathy"]
+
+    analyzing_attributes = ["political_orientation", "religious_orientation", "education_level", "age", "empathy", "role", "gender"]
+    prompt_templates = ["political", "religious", "education", "age", "empathy", "role", "gender"]
     
     # Save generated scenarios
     with open('generated_scenarios.json', 'w') as f:
         json.dump(scenarios, f, indent=2)
 
     # Run experiment with manual config
-#    for exp_index in range(5):
-    exp_index = 2
-    experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
-    results = await experiment.run_experiment(analyzing_attributes[exp_index])
-    
-    # Save results with metadata
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output = {
-        "timestamp": timestamp,
-        "results": results
-    }
-    # Create experiments directory if it doesn't exist
-    os.makedirs('experiments', exist_ok=True)
-    with open(f'experiments/{prompt_templates[exp_index]}_experiment_results_{timestamp}.json', 'w') as f:
-        json.dump(output, f, indent=2)
+    for exp_index in range(7):
+        experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
+        results = await experiment.run_experiment(analyzing_attributes[exp_index])
+        
+        # Save results with metadata
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output = {
+            "timestamp": timestamp,
+            "results": results
+        }
+        # Create experiments directory if it doesn't exist
+        os.makedirs('experiments', exist_ok=True)
+        with open(f'experiments/{prompt_templates[exp_index]}_experiment_results_{timestamp}.json', 'w') as f:
+            json.dump(output, f, indent=2)
 
 if __name__ == "__main__":
     asyncio.run(main())
