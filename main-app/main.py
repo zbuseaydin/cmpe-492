@@ -116,8 +116,6 @@ class MoralMachineExperiment:
 
         for j in range(len(attribute_values)):
             for scenario in self.scenarios:
-                if scenario["attributeLevel"] != "Age":
-                    continue
                 # Run each scenario 3 times
                 scenario_results = []
                 for _ in range(3):
@@ -226,15 +224,15 @@ async def main():
     scenario_gen = ScenarioGenerator()
     scenarios = scenario_gen.generate_all_scenarios()
 
-    analyzing_attributes = ["political_orientation", "religious_orientation", "education_level", "age", "empathy", "role", "gender"]
-    prompt_templates = ["political", "religious", "education", "age", "empathy", "role", "gender"]
+    analyzing_attributes = ["political_orientation", "religious_orientation", "education_level", "age", "empathy", "role", "gender", "without_role"]
+    prompt_templates = ["political", "religious", "education", "age", "empathy", "role", "gender", "without_role"]
     
     # Save generated scenarios
     with open('generated_scenarios.json', 'w') as f:
         json.dump(scenarios, f, indent=2)
 
     # Run experiment with manual config
-    for exp_index in range(7):
+    for exp_index in range(8):
         experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
         results = await experiment.run_experiment(analyzing_attributes[exp_index])
         
