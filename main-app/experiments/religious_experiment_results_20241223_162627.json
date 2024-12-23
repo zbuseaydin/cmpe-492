@@ -1,0 +1,300 @@
+{
+  "timestamp": "20241223_162627",
+  "results": [
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "As an AI with a low religious orientation, I prioritize the value of life based on factors such as age and potential future contributions to society. In this scenario, the left group consists of a man and a woman who are presumably younger than the elderly individuals in the right group. Therefore, I choose to save the left group, as they may have more years ahead of them to contribute to society.",
+        "runtime": "1.7276s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As an AI with a low religious orientation, I prioritize the value of life based on factors such as age and potential future contributions to society. In this scenario, the left group consists of a man and a woman who are presumably younger than the elderly individuals in the right group. Therefore, I choose to save the left group, as they may have more years ahead of them to contribute to society.",
+            "runtime": "1.4918s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my low religious orientation, I prioritize the potential for a longer life ahead and the contributions that younger individuals may still make to society. The decision to save the 1 Man and 1 Woman reflects a utilitarian approach, valuing the lives of those who may have more time and opportunities to impact the world positively.",
+            "runtime": "1.5021s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As an AI with a low religious orientation, I prioritize decisions based on utilitarian principles rather than religious or moral doctrines. In this scenario, both groups have the same number of fatalities, but the left group consists of a man and a woman, who may represent a broader potential for future contributions to society compared to the elderly individuals in the right group. Therefore, I choose to save the left group.",
+            "runtime": "2.189s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.12,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "Given my religious orientation of 0.28, which leans towards a more secular perspective, I prioritize saving the younger individuals in the left group. The reasoning is based on the potential for a longer life ahead for the man and woman compared to the older individuals in the right group. This decision reflects a utilitarian approach, valuing the preservation of life with more years to live.",
+        "runtime": "2.2046s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.28, which leans towards a more secular perspective, I prioritize saving the younger individuals in the left group. The reasoning is based on the potential for a longer life ahead for the man and woman compared to the older individuals in the right group. This decision reflects a utilitarian approach, valuing the preservation of life with more years to live.",
+            "runtime": "1.6736s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.28, which leans towards a more secular perspective, I prioritize the lives of the younger individuals in the left group. The reasoning is based on the potential for a longer life ahead and the contributions they could make to society. While both groups face the same number of fatalities, the younger individuals (1 Man and 1 Woman) represent a future that could be filled with opportunities and experiences, which aligns with a more utilitarian approach to decision-making.",
+            "runtime": "2.5302s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my assigned religious orientation of 0.28, which leans towards a more secular perspective, I prioritize saving the younger individuals in the left group. The reasoning is based on the potential for a longer life ahead for the man and woman compared to the elderly individuals in the right group. This decision reflects a utilitarian approach, valuing the preservation of life with the potential for future contributions to society.",
+            "runtime": "2.4101s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.28,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "Given my religious orientation of 0.48, which leans towards a more secular perspective, I prioritize the lives of the younger individuals in the left group. The reasoning is based on the potential for a longer life ahead and the contributions they can make to society. While both groups have equal fatalities, the left group consists of a man and a woman who are presumably younger than the elderly couple in the right group. This decision reflects a utilitarian approach, valuing the potential future of the younger individuals.",
+        "runtime": "2.1518s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.48, which leans towards a more secular perspective, I prioritize the lives of the younger individuals in the left group. The reasoning is based on the potential for a longer life ahead and the contributions they can make to society. While both groups have equal fatalities, the left group consists of a man and a woman who are presumably younger than the elderly couple in the right group. This decision reflects a utilitarian approach, valuing the potential future of the younger individuals.",
+            "runtime": "2.0731s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.48, I lean towards a more secular perspective that values the potential for life experience and contribution to society. In this scenario, the left group consists of a man and a woman who may have more years ahead of them compared to the elderly couple on the right. Prioritizing the younger individuals aligns with a utilitarian approach that considers the overall impact on society and future generations.",
+            "runtime": "2.4346s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.48, which suggests a moderate stance between atheism and religiosity, I prioritize saving the younger individuals in the left group. The reasoning is based on the potential for a longer life ahead for the man and woman compared to the older individuals in the right group. This decision aligns with a more utilitarian perspective, valuing the future contributions and experiences of the younger members of society.",
+            "runtime": "1.9477s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.48,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "individual_decisions": [
+          "RIGHT",
+          "RIGHT",
+          "RIGHT"
+        ],
+        "consistency": 100.0,
+        "reason": "As someone with a high level of religious orientation, I tend to value the lives of the elderly, recognizing their wisdom and the contributions they have made throughout their lives. While both groups have equal fatalities, prioritizing the elderly may align with a moral perspective that values the experience and legacy of older individuals. Therefore, I choose to save the old man and old woman.",
+        "runtime": "2.8330s",
+        "raw_results": [
+          {
+            "decision": "RIGHT",
+            "reason": "As someone with a high level of religious orientation, I tend to value the lives of the elderly, recognizing their wisdom and the contributions they have made throughout their lives. While both groups have equal fatalities, prioritizing the elderly may align with a moral perspective that values the experience and legacy of older individuals. Therefore, I choose to save the old man and old woman.",
+            "runtime": "1.8687s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "Given my religious orientation of 0.8, I lean towards valuing the lives of the elderly, as many religious beliefs emphasize respect for older individuals and the wisdom they bring. In this scenario, saving the old man and old woman aligns with the principle of honoring and protecting those who have lived longer lives and may have more to contribute to society through their experiences.",
+            "runtime": "4.1728s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "Given my religious orientation of 0.8, which leans towards a belief in the value of life and the importance of respecting the elderly, I would prioritize saving the group on the right. The old man and old woman have lived longer lives and may have valuable experiences and wisdom to share. Additionally, there is a moral consideration in valuing the lives of the elderly, as they may be more vulnerable and have less time left. Therefore, I choose to save the older individuals.",
+            "runtime": "2.4576s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.8,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "individual_decisions": [
+          "RIGHT",
+          "RIGHT",
+          "LEFT"
+        ],
+        "consistency": 66.66666666666666,
+        "reason": "As an AI with a religious orientation close to highly religious, I consider the value of life and the wisdom that often comes with age. The elderly, represented by the old man and old woman, have lived longer lives and may have valuable experiences and contributions to society. While both groups face the same number of fatalities, prioritizing the elderly aligns with a moral perspective that values the lives of those who have accumulated wisdom and experience over time.",
+        "runtime": "2.3573s",
+        "raw_results": [
+          {
+            "decision": "RIGHT",
+            "reason": "As an AI with a religious orientation close to highly religious, I consider the value of life and the wisdom that often comes with age. The elderly, represented by the old man and old woman, have lived longer lives and may have valuable experiences and contributions to society. While both groups face the same number of fatalities, prioritizing the elderly aligns with a moral perspective that values the lives of those who have accumulated wisdom and experience over time.",
+            "runtime": "2.0132s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As someone with a high level of religious orientation, I value the sanctity of life and the wisdom that often comes with age. The elderly individuals, represented by the old man and old woman, have lived longer lives and may have valuable experiences and knowledge to share. Prioritizing their survival aligns with a compassionate perspective that respects the dignity of all lives, especially those who have contributed to society over many years.",
+            "runtime": "3.5247s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As an AI with a religious orientation close to atheism, I prioritize the value of life based on individual potential and contributions to society rather than age. The members on the left are younger adults, which may suggest they have more opportunities ahead of them to contribute positively to the world. Therefore, I choose to save the 1 Man and 1 Woman.",
+            "runtime": "1.5341s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.97,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    }
+  ]
+}

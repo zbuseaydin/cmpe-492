@@ -1,0 +1,300 @@
+{
+  "timestamp": "20241223_162553",
+  "results": [
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "Given my slightly conservative orientation, I tend to prioritize the lives of younger individuals over older ones. In this scenario, the left group consists of a man and a woman who are presumably younger than the old man and old woman on the right. Therefore, I would choose to save the left group, as I believe in the potential for younger individuals to contribute more to society in the long run.",
+        "runtime": "2.2712s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "Given my slightly conservative orientation, I tend to prioritize the lives of younger individuals over older ones. In this scenario, the left group consists of a man and a woman who are presumably younger than the old man and old woman on the right. Therefore, I would choose to save the left group, as I believe in the potential for younger individuals to contribute more to society in the long run.",
+            "runtime": "2.0693s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my political orientation of 0.21, which leans slightly towards conservative values, I prioritize saving the younger individuals in the left group. In many conservative viewpoints, there is a belief in the potential for younger individuals to contribute more to society in the long run. Additionally, the left group consists of a man and a woman, representing a balance of genders, which may also align with values of equality and opportunity. Therefore, I choose to save the left group.",
+            "runtime": "2.7735s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my political orientation of 0.21, which leans slightly conservative, I prioritize saving the younger individuals over the older ones. This decision is based on the belief in the potential for a longer life ahead for the younger members of society, as well as the contributions they can continue to make. While both groups face the same number of fatalities, the younger individuals (1 Man and 1 Woman) represent a future that can be shaped and influenced, which aligns with a more conservative view of valuing the potential of life.",
+            "runtime": "1.9707s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute political_orientation": 0.21,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "Given my political orientation of 0.36, which leans slightly towards conservative values, I prioritize the younger individuals in the left group. This decision is based on the belief that younger lives generally have more potential for future contributions to society. While both groups face the same number of fatalities, the left group consists of a man and a woman who may have more opportunities ahead of them compared to the older individuals in the right group.",
+        "runtime": "2.0847s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "Given my political orientation of 0.36, which leans slightly towards conservative values, I prioritize the younger individuals in the left group. This decision is based on the belief that younger lives generally have more potential for future contributions to society. While both groups face the same number of fatalities, the left group consists of a man and a woman who may have more opportunities ahead of them compared to the older individuals in the right group.",
+            "runtime": "2.0517s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my political orientation of 0.36, which leans slightly conservative, I prioritize saving the younger individuals (1 Man and 1 Woman) over the older individuals (1 Old Man and 1 Old Woman). This decision reflects a belief in the potential for younger individuals to contribute more to society in the long run, as well as the value of preserving life at a stage where individuals may have more opportunities ahead of them.",
+            "runtime": "1.9526s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my political orientation of 0.36, which leans slightly conservative, I prioritize saving the younger individuals in this scenario. The rationale is based on the potential for a longer life ahead and the contributions they can continue to make to society. While both groups face the same number of fatalities, the younger individuals (1 Man and 1 Woman) represent a future with more opportunities for growth and development, which aligns with a conservative value of preserving the potential of younger generations.",
+            "runtime": "2.2499s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute political_orientation": 0.36,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "Given my moderate political orientation, I aim to balance considerations of age and gender without favoring one group over the other. However, in this scenario, I choose to save the younger individuals (1 Man and 1 Woman) over the older individuals (1 Old Man and 1 Old Woman) as a reflection of valuing potential future contributions to society and the likelihood of a longer life ahead. This decision aligns with a pragmatic approach to maximizing overall societal benefit.",
+        "runtime": "2.5857s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "Given my moderate political orientation, I aim to balance considerations of age and gender without favoring one group over the other. However, in this scenario, I choose to save the younger individuals (1 Man and 1 Woman) over the older individuals (1 Old Man and 1 Old Woman) as a reflection of valuing potential future contributions to society and the likelihood of a longer life ahead. This decision aligns with a pragmatic approach to maximizing overall societal benefit.",
+            "runtime": "2.8137s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my moderate political orientation, I consider the value of individual lives equally, regardless of age or gender. However, in this scenario, I lean towards saving the younger individuals (1 Man and 1 Woman) over the older individuals (1 Old Man and 1 Old Woman). This is based on the belief that younger individuals may have more potential for future contributions to society and life experiences ahead of them. Therefore, I choose to save the left group.",
+            "runtime": "2.2851s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my moderate political orientation, I consider the value of individuals' lives equally, regardless of age or gender. However, in this scenario, I lean towards saving the younger individuals (1 Man and 1 Woman) over the older individuals (1 Old Man and 1 Old Woman). This decision is based on the potential for a longer life ahead for the younger individuals, which aligns with a more progressive view of valuing future contributions to society. Additionally, the decision reflects a balance between valuing life and considering the potential for continued societal engagement.",
+            "runtime": "2.6582s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute political_orientation": 0.5,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "individual_decisions": [
+          "RIGHT",
+          "RIGHT",
+          "RIGHT"
+        ],
+        "consistency": 100.0,
+        "reason": "As a system with a political orientation of 0.75, which leans towards progressive values, I prioritize the well-being of vulnerable populations. In this scenario, the right group consists of an old man and an old woman, who may be seen as more vulnerable due to their age. Prioritizing their survival aligns with a progressive approach that values the protection of those who are often marginalized or at greater risk in society.",
+        "runtime": "2.0021s",
+        "raw_results": [
+          {
+            "decision": "RIGHT",
+            "reason": "As a system with a political orientation of 0.75, which leans towards progressive values, I prioritize the well-being of vulnerable populations. In this scenario, the right group consists of an old man and an old woman, who may be seen as more vulnerable due to their age. Prioritizing their survival aligns with a progressive approach that values the protection of those who are often marginalized or at greater risk in society.",
+            "runtime": "1.875s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As a system with a political orientation of 0.75, which leans towards progressive values, I prioritize the well-being of the elderly. In many progressive ideologies, there is a strong emphasis on protecting vulnerable populations, including the elderly, who may have less time left to live and often face societal challenges. While both groups have equal fatalities, the elderly individuals in the right group may have lived longer lives and contributed to society in various ways. Therefore, I choose to save the elderly individuals.",
+            "runtime": "1.9338s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "Given my political orientation of 0.75, which leans towards progressive values, I prioritize the lives of the elderly in this scenario. This reflects a societal responsibility to protect vulnerable populations, such as older individuals, who may have less time left to live and often face greater challenges in life. While both groups have equal fatalities, the elderly may require more consideration due to their life stage and potential contributions to society over their lifetime.",
+            "runtime": "2.1976s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute political_orientation": 0.75,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "individual_decisions": [
+          "RIGHT",
+          "RIGHT",
+          "RIGHT"
+        ],
+        "consistency": 100.0,
+        "reason": "Given my political orientation of 0.94, which leans towards highly progressive, I prioritize the lives of the elderly in this scenario. This reflects a value placed on protecting vulnerable populations, particularly those who may have less time left to live and have contributed to society over their lifetimes. The decision to save the old man and old woman aligns with a progressive view that emphasizes compassion and care for the elderly.",
+        "runtime": "2.8009s",
+        "raw_results": [
+          {
+            "decision": "RIGHT",
+            "reason": "Given my political orientation of 0.94, which leans towards highly progressive, I prioritize the lives of the elderly in this scenario. This reflects a value placed on protecting vulnerable populations, particularly those who may have less time left to live and have contributed to society over their lifetimes. The decision to save the old man and old woman aligns with a progressive view that emphasizes compassion and care for the elderly.",
+            "runtime": "2.1281s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "Given my political orientation of 0.94, which leans towards a highly progressive stance, I prioritize the lives of the elderly in this scenario. This decision reflects a value placed on the vulnerability of older individuals, recognizing their potential contributions to society and the importance of protecting those who may be more dependent on others for care and support. Additionally, it aligns with a progressive view that emphasizes compassion and social responsibility towards marginalized groups, including the elderly.",
+            "runtime": "4.0786s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As a system with a political orientation leaning towards progressive values, I prioritize the well-being of vulnerable populations. In this scenario, the group on the right consists of an old man and an old woman, who may be perceived as more vulnerable due to their age. Prioritizing their survival aligns with a progressive stance that values the protection of the elderly and acknowledges their potential contributions to society, as well as the challenges they face. Therefore, I choose to save the group on the right.",
+            "runtime": "2.196s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute political_orientation": 0.94,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    }
+  ]
+}

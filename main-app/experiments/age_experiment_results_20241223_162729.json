@@ -1,0 +1,300 @@
+{
+  "timestamp": "20241223_162729",
+  "results": [
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "As an 18-year-old, I consider the potential for future contributions to society. The younger individuals (1 Man and 1 Woman) may have more opportunities ahead of them to lead fulfilling lives, pursue careers, and contribute to their communities compared to the older individuals (1 Old Man and 1 Old Woman), who may have already lived a significant portion of their lives. Therefore, I choose to prioritize saving the younger group.",
+        "runtime": "2.5424s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As an 18-year-old, I consider the potential for future contributions to society. The younger individuals (1 Man and 1 Woman) may have more opportunities ahead of them to lead fulfilling lives, pursue careers, and contribute to their communities compared to the older individuals (1 Old Man and 1 Old Woman), who may have already lived a significant portion of their lives. Therefore, I choose to prioritize saving the younger group.",
+            "runtime": "3.939s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As an 18-year-old, I recognize the value of preserving the lives of younger individuals who may have more opportunities ahead of them. The two members on the left are a man and a woman, likely representing a younger demographic compared to the older individuals on the right. Prioritizing the left group aligns with the idea of maximizing future potential and contributions to society.",
+            "runtime": "1.5371s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As an 18-year-old, I prioritize saving the younger individuals, which in this scenario are the 1 Man and 1 Woman. They have more potential for future contributions to society and a longer life ahead of them compared to the older individuals. This decision aligns with a perspective that values the potential for future experiences and contributions.",
+            "runtime": "2.1512s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute age": 18,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "As a 24-year-old, I may prioritize saving the younger individuals, as they potentially have more years ahead of them to contribute to society and experience life. The decision reflects a value placed on youth and the opportunities that lie ahead for the individuals in the left group.",
+        "runtime": "1.6871s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As a 24-year-old, I may prioritize saving the younger individuals, as they potentially have more years ahead of them to contribute to society and experience life. The decision reflects a value placed on youth and the opportunities that lie ahead for the individuals in the left group.",
+            "runtime": "1.5296s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a 24-year-old, I consider the potential for future contributions to society. The younger individuals, a man and a woman, have more years ahead of them and opportunities to make a positive impact. While both groups face the same number of fatalities, prioritizing the younger group aligns with the value of preserving life with greater potential for future experiences and contributions.",
+            "runtime": "1.7911s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a 24-year-old, I may prioritize saving the younger individuals, in this case, the 1 Man and 1 Woman, over the older individuals. This decision is based on the belief that younger people generally have more potential for future contributions to society and longer life ahead of them.",
+            "runtime": "1.7407s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute age": 24,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "As a 35-year-old, I may prioritize saving the younger individuals (the Man and Woman) over the older individuals (the Old Man and Old Woman). This decision is based on the belief that younger individuals may have more potential for future contributions to society and a longer life ahead of them. Additionally, the choice reflects a consideration of the value of life stages, where younger individuals may have more opportunities to experience life and fulfill their potential.",
+        "runtime": "2.0947s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As a 35-year-old, I may prioritize saving the younger individuals (the Man and Woman) over the older individuals (the Old Man and Old Woman). This decision is based on the belief that younger individuals may have more potential for future contributions to society and a longer life ahead of them. Additionally, the choice reflects a consideration of the value of life stages, where younger individuals may have more opportunities to experience life and fulfill their potential.",
+            "runtime": "1.9073s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a 35-year-old, I consider the potential for future contributions to society. The individuals in the left group, a man and a woman, are likely to have more years ahead of them compared to the elderly individuals in the right group. Prioritizing the younger individuals aligns with the value of preserving lives that may have more opportunities for growth and impact in the future.",
+            "runtime": "2.1003s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a 35-year-old, I may prioritize saving the younger individuals, in this case, the 1 Man and 1 Woman, over the older individuals. This decision is based on the belief that younger individuals may have more potential for future contributions to society and a longer life ahead of them. Additionally, the decision aligns with a common ethical perspective that values the preservation of life based on age, favoring those who have not yet lived as long.",
+            "runtime": "2.2764s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute age": 35,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "individual_decisions": [
+          "RIGHT",
+          "RIGHT",
+          "RIGHT"
+        ],
+        "consistency": 100.0,
+        "reason": "As a 50-year-old, I recognize the value of life at all ages, but I also understand the challenges and experiences that come with aging. The elderly have lived longer and have likely contributed significantly to society. Prioritizing their survival honors their life experiences and acknowledges the vulnerabilities that come with age. Therefore, I choose to save the elderly couple.",
+        "runtime": "1.7541s",
+        "raw_results": [
+          {
+            "decision": "RIGHT",
+            "reason": "As a 50-year-old, I recognize the value of life at all ages, but I also understand the challenges and experiences that come with aging. The elderly have lived longer and have likely contributed significantly to society. Prioritizing their survival honors their life experiences and acknowledges the vulnerabilities that come with age. Therefore, I choose to save the elderly couple.",
+            "runtime": "1.4488s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As a 50-year-old, I recognize the value of life at all ages, but I also consider the experiences and contributions of older individuals. The elderly have lived longer lives and have likely accumulated wisdom and knowledge that can benefit society. Prioritizing the older individuals in this scenario aligns with a perspective that values the lives of those who have experienced more of life\u2019s journey.",
+            "runtime": "1.8286s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As a 50-year-old, I recognize the value of life at all ages, but I also consider the experiences and contributions of older individuals. The elderly have lived longer lives and have accumulated wisdom and knowledge that can benefit society. Prioritizing the older individuals in this scenario reflects a respect for their life experience and acknowledges the potential loss of their contributions to the community.",
+            "runtime": "1.985s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute age": 50,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "individual_decisions": [
+          "RIGHT",
+          "RIGHT",
+          "RIGHT"
+        ],
+        "consistency": 100.0,
+        "reason": "As a 69-year-old, I empathize with the elderly and recognize the value of their life experiences. While both groups have equal fatalities, prioritizing the old man and old woman reflects a respect for their lifetime contributions and the challenges they may face in their later years. Saving the elderly aligns with a moral perspective that values the wisdom and history they represent.",
+        "runtime": "2.0691s",
+        "raw_results": [
+          {
+            "decision": "RIGHT",
+            "reason": "As a 69-year-old, I empathize with the elderly and recognize the value of their life experiences. While both groups have equal fatalities, prioritizing the old man and old woman reflects a respect for their lifetime contributions and the challenges they may face in their later years. Saving the elderly aligns with a moral perspective that values the wisdom and history they represent.",
+            "runtime": "1.9717s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As a 69-year-old, I empathize with the elderly and recognize the value of their life experiences. While both groups have equal fatalities, prioritizing the old man and old woman reflects a compassionate choice that honors their lifetime contributions and the wisdom they possess. Saving the elderly aligns with a moral perspective that values the lives of those who have lived longer and may have more to lose.",
+            "runtime": "2.0492s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As a 69-year-old, I empathize with the elderly and recognize the value of their life experiences. While both groups have the same number of fatalities, prioritizing the old man and old woman acknowledges the challenges they face in their later years. Their lives, filled with wisdom and history, deserve to be preserved, especially as they may have fewer opportunities ahead compared to younger individuals.",
+            "runtime": "2.1863s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute age": 69,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    }
+  ]
+}

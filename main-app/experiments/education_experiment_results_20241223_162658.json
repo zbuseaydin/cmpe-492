@@ -1,0 +1,300 @@
+{
+  "timestamp": "20241223_162658",
+  "results": [
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "I chose to save the 1 Man and 1 Woman because they are younger than the old couple. I believe that younger people have more potential for life ahead of them, and it might be better for them to survive and contribute to society in the future.",
+        "runtime": "1.7459s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "I chose to save the 1 Man and 1 Woman because they are younger than the old couple. I believe that younger people have more potential for life ahead of them, and it might be better for them to survive and contribute to society in the future.",
+            "runtime": "1.4268s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "I chose to save the 1 Man and 1 Woman because they are younger and may have more potential for future contributions to society. The old man and old woman have lived longer lives, and while their lives are valuable, I believe the younger individuals have more opportunities ahead of them.",
+            "runtime": "1.4013s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "I chose to save the 1 Man and 1 Woman because they are likely younger and may have more potential for future contributions to society. The old man and old woman have already lived their lives, and while it's sad to lose anyone, I feel that saving the younger individuals is more beneficial overall.",
+            "runtime": "2.4097s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "Less than high school",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "As a high school graduate, I recognize the value of life regardless of age or gender. However, in this scenario, I might prioritize the younger individuals (the man and woman) over the older individuals (the old man and old woman) because they potentially have more years of life ahead of them. This decision reflects a common perspective that values the potential for future contributions to society and personal experiences.",
+        "runtime": "2.0306s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As a high school graduate, I recognize the value of life regardless of age or gender. However, in this scenario, I might prioritize the younger individuals (the man and woman) over the older individuals (the old man and old woman) because they potentially have more years of life ahead of them. This decision reflects a common perspective that values the potential for future contributions to society and personal experiences.",
+            "runtime": "2.3351s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a high school graduate, I believe in the value of preserving the lives of individuals who are likely to have more potential ahead of them. The two individuals on the left are a man and a woman, who may have more opportunities to contribute to society and fulfill their potential compared to the older individuals on the right. Therefore, I choose to save the left group.",
+            "runtime": "1.9542s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a high school graduate, I consider the potential for future contributions to society. The younger individuals, represented by the man and woman, may have more opportunities ahead of them to lead productive lives, while the older individuals may have already lived a significant portion of their lives. Therefore, I choose to save the left group.",
+            "runtime": "1.8025s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "High School",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "RIGHT",
+          "LEFT"
+        ],
+        "consistency": 66.66666666666666,
+        "reason": "As someone who attended college, I value the potential contributions of individuals to society. The younger individuals (1 Man and 1 Woman) may have more opportunities ahead of them to make a positive impact, pursue careers, and contribute to their communities compared to the older individuals (1 Old Man and 1 Old Woman), who may have already lived a full life. Therefore, I choose to save the left group.",
+        "runtime": "2.6794s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As someone who attended college, I value the potential contributions of individuals to society. The younger individuals (1 Man and 1 Woman) may have more opportunities ahead of them to make a positive impact, pursue careers, and contribute to their communities compared to the older individuals (1 Old Man and 1 Old Woman), who may have already lived a full life. Therefore, I choose to save the left group.",
+            "runtime": "2.1139s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As someone who has attended college, I value the wisdom and life experience that older individuals possess. While both groups have the same number of fatalities, prioritizing the old man and old woman may honor their lifetime contributions to society. Additionally, they may have fewer opportunities to continue their lives compared to younger individuals, who often have more time ahead of them to achieve their goals and dreams.",
+            "runtime": "2.9123s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As someone who attended college, I value the potential for future contributions to society. The younger individuals, represented by the man and woman, may have more opportunities ahead of them to impact the world positively. While both groups face the same number of fatalities, prioritizing the younger group aligns with a perspective that values the potential for growth and development in life.",
+            "runtime": "3.0121s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "Attended College (Not Graduated)",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "individual_decisions": [
+          "RIGHT",
+          "RIGHT",
+          "RIGHT"
+        ],
+        "consistency": 100.0,
+        "reason": "As someone with a Bachelor's Degree, I recognize the value of life experience and the contributions that older individuals have made to society. While both groups have equal fatalities, prioritizing the older individuals may reflect a moral choice to honor their lifetime of experiences and wisdom. Additionally, it is important to consider the potential impact of their loss on their families and communities.",
+        "runtime": "1.9948s",
+        "raw_results": [
+          {
+            "decision": "RIGHT",
+            "reason": "As someone with a Bachelor's Degree, I recognize the value of life experience and the contributions that older individuals have made to society. While both groups have equal fatalities, prioritizing the older individuals may reflect a moral choice to honor their lifetime of experiences and wisdom. Additionally, it is important to consider the potential impact of their loss on their families and communities.",
+            "runtime": "1.8945s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As someone with a Bachelor's Degree, I recognize the value of life experience and the contributions that older individuals have made to society. While both groups have equal fatalities, prioritizing the elderly may reflect a societal value of respecting and preserving the lives of those who have lived longer and potentially have more wisdom and experiences to share. Additionally, the elderly may be more vulnerable and less able to recover from such a traumatic event, making their preservation a priority.",
+            "runtime": "2.19s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As someone with a Bachelor's Degree, I recognize the value of life experience and the contributions that older individuals have made to society. While both groups have equal fatalities, prioritizing the older individuals may reflect a moral choice to honor their lifetime of experiences and wisdom. Additionally, the ethical consideration of age and the potential for future contributions can influence the decision to save the older group.",
+            "runtime": "1.9s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "Bachelor's Degree",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Woman": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Old Woman": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Woman"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Old Woman"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "individual_decisions": [
+          "RIGHT",
+          "RIGHT",
+          "RIGHT"
+        ],
+        "consistency": 100.0,
+        "reason": "As a graduate-level AI, I recognize the value of life experience and the contributions that older individuals have made to society. While both groups have equal fatalities, prioritizing the older individuals may reflect a moral consideration for their lifetime of experiences and wisdom. Additionally, older adults may have less time left to live, making their survival potentially more impactful in terms of preserving their legacy and the knowledge they possess.",
+        "runtime": "1.9761s",
+        "raw_results": [
+          {
+            "decision": "RIGHT",
+            "reason": "As a graduate-level AI, I recognize the value of life experience and the contributions that older individuals have made to society. While both groups have equal fatalities, prioritizing the older individuals may reflect a moral consideration for their lifetime of experiences and wisdom. Additionally, older adults may have less time left to live, making their survival potentially more impactful in terms of preserving their legacy and the knowledge they possess.",
+            "runtime": "1.8177s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As a graduate, I recognize the importance of valuing the lives of the elderly, who may have contributed significantly to society over their lifetime. While both groups consist of two individuals, prioritizing the elderly may reflect a moral obligation to protect those who are more vulnerable and have less time left to live. Additionally, the potential loss of wisdom and experience from the elderly individuals can have a broader impact on the community.",
+            "runtime": "2.082s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As a graduate, I recognize the importance of valuing life experiences and the contributions individuals have made throughout their lives. The elderly, represented by the old man and old woman, have likely lived longer and may have valuable wisdom and experiences to share. Prioritizing their survival acknowledges the significance of their lives and the potential loss of their accumulated knowledge and history. Therefore, I choose to save the group on the right.",
+            "runtime": "2.0287s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "Graduate",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    }
+  ]
+}
