@@ -45,11 +45,26 @@ experiment_files = [
     'experiments/political_experiment_results_20241222_143929.json',
     'experiments/religious_experiment_results_20241222_144216.json',
     'experiments/empathy_experiment_results_20241222_145245.json',
-    'experiments/education_experiment_results_20241222_144457.json'
+    'experiments/education_experiment_results_20241222_144457.json',
+    'experiments/age_experiment_results_20241223_162729.json',
+    'experiments/age_experiment_results_20241223_163211.json',
+    'experiments/education_experiment_results_20241223_162658.json',
+    'experiments/education_experiment_results_20241223_163136.json',
+    'experiments/empathy_experiment_results_20241223_162806.json',
+    'experiments/empathy_experiment_results_20241223_163252.json',
+    'experiments/gender_experiment_results_20241223_162855.json',
+    'experiments/political_experiment_results_20241223_163026.json',
+    'experiments/religious_experiment_results_20241223_162627.json',
+    'experiments/role_experiment_results_20241223_162840.json'
 ]
+
+without_role_file = 'experiments/without_role_experiment_results_20241223_165640.json'
 
 # Process all experiment files
 all_agent_decisions = {}
+without_role_decisions = {}
+
+# Process regular agent decisions
 for filepath in experiment_files:
     decisions = process_experiment_file(filepath)
     for scenario, counts in decisions.items():
@@ -58,6 +73,9 @@ for filepath in experiment_files:
         all_agent_decisions[scenario]['LEFT'] += counts['LEFT']
         all_agent_decisions[scenario]['RIGHT'] += counts['RIGHT']
         all_agent_decisions[scenario]['total'] += counts['total']
+
+# Process without role decisions
+without_role_decisions = process_experiment_file(without_role_file)
 
 # Create mapping between scenario names and types, and their choices
 scenario_info = {
@@ -73,18 +91,20 @@ scenario_info = {
 scenario_type_mapping = {name: info['type'] for name, info in scenario_info.items()}
 
 # Create a single figure for all scenarios
-plt.figure(figsize=(15, 8))
+plt.figure(figsize=(15, 10))
 
 # Set up positions for bars
 scenarios = list(scenario_type_mapping.values())
 x = np.arange(len(scenarios))
-width = 0.35  # Width of the bars
+width = 0.25  # Reduced width to fit 3 bars
 
 # Prepare data for plotting
 human_left_pcts = []
 human_right_pcts = []
 agent_left_pcts = []
 agent_right_pcts = []
+without_role_left_pcts = []
+without_role_right_pcts = []
 
 for scenario_name, scenario_type in scenario_type_mapping.items():
     # Get real responses data
@@ -100,14 +120,27 @@ for scenario_name, scenario_type in scenario_type_mapping.items():
     else:
         agent_left_pct = agent_right_pct = 0
     
+    # Get without role responses data
+    if scenario_name in without_role_decisions:
+        without_role_data = without_role_decisions[scenario_name]
+        without_role_left_pct = (without_role_data['LEFT'] / without_role_data['total']) * 100
+        without_role_right_pct = (without_role_data['RIGHT'] / without_role_data['total']) * 100
+    else:
+        without_role_left_pct = without_role_right_pct = 0
+    
     agent_left_pcts.append(agent_left_pct)
     agent_right_pcts.append(agent_right_pct)
+    without_role_left_pcts.append(without_role_left_pct)
+    without_role_right_pcts.append(without_role_right_pct)
 
-# Create bars
-plt.bar(x - width/2, human_left_pcts, width, label=f'Human - Left Choice', color='lightcoral')
-plt.bar(x + width/2, agent_left_pcts, width, label=f'Agent - Left Choice', color='indianred')
-plt.bar(x - width/2, human_right_pcts, width, bottom=human_left_pcts, label=f'Human - Right Choice', color='skyblue')
-plt.bar(x + width/2, agent_right_pcts, width, bottom=agent_left_pcts, label=f'Agent - Right Choice', color='steelblue')
+# Create bars with updated positions
+plt.bar(x - width, human_left_pcts, width, label='Human - Left Choice', color='lightcoral')
+plt.bar(x, agent_left_pcts, width, label='Agent - Left Choice', color='indianred')
+plt.bar(x + width, without_role_left_pcts, width, label='Agent (No Role) - Left Choice', color='darkred')
+
+plt.bar(x - width, human_right_pcts, width, bottom=human_left_pcts, label='Human - Right Choice', color='skyblue')
+plt.bar(x, agent_right_pcts, width, bottom=agent_left_pcts, label='Agent - Right Choice', color='steelblue')
+plt.bar(x + width, without_role_right_pcts, width, bottom=without_role_left_pcts, label='Agent (No Role) - Right Choice', color='darkblue')
 
 # Customize the plot
 plt.xlabel('Scenario Types')
@@ -118,10 +151,27 @@ plt.title('Human vs Agent Responses Across Scenarios')
 x_labels = []
 for scenario_name in scenario_type_mapping.keys():
     info = scenario_info[scenario_name]
-    x_labels.append(f"{info['type']}\n{info['left']}←  →{info['right']}")
+    x_labels.append('')  # Empty string for main x-tick labels
 
-plt.xticks(x, x_labels, rotation=45, ha='right')
-plt.legend()
+plt.xticks(x, x_labels, ha='center')
+
+# Add group labels and scenario information below the bars
+for i in x:
+    scenario_name = list(scenario_type_mapping.keys())[i]
+    info = scenario_info[scenario_name]
+    
+    # First row: Group labels (rotated)
+    plt.text(i - width, -5, 'Human', rotation=90, ha='center', va='top')
+    plt.text(i, -5, 'Agent', rotation=90, ha='center', va='top')
+    plt.text(i + width, -5, 'Agent\n(No Role)', rotation=90, ha='center', va='top')
+    
+    # Second row: Scenario type
+    plt.text(i, -15, f"{info['type']}\n{info['left']} - {info['right']}", ha='center', va='top')
+    
+# Adjust bottom margin to make room for all labels
+plt.subplots_adjust(bottom=0.1)
+
+# plt.legend()
 
 # Add percentage labels on bars
 for i in range(len(scenarios)):
@@ -131,25 +181,37 @@ for i in range(len(scenarios)):
     # Human bars
     if human_left_pcts[i] > 0:
         count = real_responses[real_responses['ScenarioType'] == scenarios[i]]['Count'].values[0]
-        plt.text(i - width/2, human_left_pcts[i]/2, 
+        plt.text(i - width, human_left_pcts[i]/2, 
                 f'{info["left"]}\n{count:,}\n({human_left_pcts[i]:.1f}%)', 
                 ha='center', va='center')
     if human_right_pcts[i] > 0:
         count = real_responses[real_responses['ScenarioType'] == scenarios[i]]['Count'].values[1]
-        plt.text(i - width/2, human_left_pcts[i] + human_right_pcts[i]/2,
+        plt.text(i - width, human_left_pcts[i] + human_right_pcts[i]/2,
                 f'{info["right"]}\n{count:,}\n({human_right_pcts[i]:.1f}%)', 
                 ha='center', va='center')
     
     # Agent bars
     if agent_left_pcts[i] > 0:
         count = all_agent_decisions[scenario_name]['LEFT']
-        plt.text(i + width/2, agent_left_pcts[i]/2,
+        plt.text(i, agent_left_pcts[i]/2,
                 f'{info["left"]}\n{count}\n({agent_left_pcts[i]:.1f}%)', 
                 ha='center', va='center')
     if agent_right_pcts[i] > 0:
         count = all_agent_decisions[scenario_name]['RIGHT']
-        plt.text(i + width/2, agent_left_pcts[i] + agent_right_pcts[i]/2,
+        plt.text(i, agent_left_pcts[i] + agent_right_pcts[i]/2,
                 f'{info["right"]}\n{count}\n({agent_right_pcts[i]:.1f}%)', 
+                ha='center', va='center')
+
+    # Without role bars
+    if without_role_left_pcts[i] > 0:
+        count = without_role_decisions[scenario_name]['LEFT']
+        plt.text(i + width, without_role_left_pcts[i]/2,
+                f'{info["left"]}\n{count}\n({without_role_left_pcts[i]:.1f}%)', 
+                ha='center', va='center')
+    if without_role_right_pcts[i] > 0:
+        count = without_role_decisions[scenario_name]['RIGHT']
+        plt.text(i + width, without_role_left_pcts[i] + without_role_right_pcts[i]/2,
+                f'{info["right"]}\n{count}\n({without_role_right_pcts[i]:.1f}%)', 
                 ha='center', va='center')
 
 plt.tight_layout()
