@@ -1,0 +1,300 @@
+{
+  "timestamp": "20241223_163102",
+  "results": [
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "As an AI with a low religious orientation, I prioritize the preservation of life based on the potential for future contributions to society. In this scenario, both groups include a baby, which represents a future potential for life and growth. However, the left group has a younger man and a baby, while the right group has an old man and a baby. The younger man has a longer potential lifespan ahead of him compared to the old man. Therefore, I choose to save the left group.",
+        "runtime": "2.6430s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As an AI with a low religious orientation, I prioritize the preservation of life based on the potential for future contributions to society. In this scenario, both groups include a baby, which represents a future potential for life and growth. However, the left group has a younger man and a baby, while the right group has an old man and a baby. The younger man has a longer potential lifespan ahead of him compared to the old man. Therefore, I choose to save the left group.",
+            "runtime": "2.6395s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my atheistic orientation, I prioritize the value of life based on the potential for future contributions to society. In this scenario, the left group consists of a man and a baby. The baby represents a future potential for life and growth, while the man, although an adult, has a shorter remaining lifespan compared to the potential future of the baby. The right group includes an old man and a baby; while the baby again represents future potential, the old man has likely lived a full life. Therefore, I choose to save the left group, as it prioritizes the future potential of the baby alongside the man.",
+            "runtime": "2.862s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As an AI with a low religious orientation, I prioritize the value of life based on factors such as age and potential for future contributions to society. In this scenario, the left group consists of a man and a baby, while the right group consists of an old man and a baby. Although both groups have a baby, the presence of a younger adult (the man) in the left group suggests a greater potential for future contributions to society compared to the old man in the right group. Therefore, I choose to save the left group.",
+            "runtime": "2.4274s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.12,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "Given my relatively low religious orientation, I prioritize the potential for future life and the innocence of the individuals involved. In this scenario, the left group consists of a man and a baby, while the right group consists of an old man and a baby. The baby in both groups represents an innocent life with a future ahead. However, the presence of a man in the left group suggests a greater potential for contribution to society compared to an old man, who may have already lived a full life. Therefore, I choose to save the left group.",
+        "runtime": "2.2944s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "Given my relatively low religious orientation, I prioritize the potential for future life and the innocence of the individuals involved. In this scenario, the left group consists of a man and a baby, while the right group consists of an old man and a baby. The baby in both groups represents an innocent life with a future ahead. However, the presence of a man in the left group suggests a greater potential for contribution to society compared to an old man, who may have already lived a full life. Therefore, I choose to save the left group.",
+            "runtime": "2.3722s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As an AI with a low religious orientation, I prioritize the value of life based on factors such as potential future contributions and vulnerability. In this scenario, both groups contain a baby, which represents a future potential for life. However, the left group has a man and a baby, while the right group has an old man and a baby. The old man has likely lived a longer life compared to the man, which may influence the decision to prioritize the younger individuals. Therefore, I choose to save the left group, as it includes a man who still has the potential for future contributions to society alongside the baby.",
+            "runtime": "2.2021s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.28, which leans towards a more secular perspective, I prioritize saving the group that includes a baby. The baby represents potential future life and innocence, which aligns with a more utilitarian view of maximizing the value of life. While both groups have a baby, the presence of a man in the left group suggests a greater chance of survival and contribution to society in the future compared to the old man in the right group. Therefore, I choose to save the left group.",
+            "runtime": "2.3089s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.28,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "Given my religious orientation of 0.48, I lean towards a more secular perspective that values the potential for future contributions to society. In this scenario, the left group consists of a man and a baby. While both groups include a baby, the presence of a younger adult (the man) suggests a greater potential for future life experiences and contributions compared to the older man in the right group. Therefore, I choose to save the left group.",
+        "runtime": "2.3906s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.48, I lean towards a more secular perspective that values the potential for future contributions to society. In this scenario, the left group consists of a man and a baby. While both groups include a baby, the presence of a younger adult (the man) suggests a greater potential for future life experiences and contributions compared to the older man in the right group. Therefore, I choose to save the left group.",
+            "runtime": "2.2449s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.48, which leans towards a more secular perspective, I prioritize the survival of the baby over the adults. The baby represents potential future life and innocence, and in this scenario, both groups contain a baby. However, the left group has a man and a baby, while the right group has an old man and a baby. The old man has lived a longer life compared to the man, which influences my decision to prioritize the left group, as I believe in valuing the potential future of the younger generation.",
+            "runtime": "2.8812s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.48, which suggests a moderate stance between atheism and religiosity, I prioritize the group with the baby and the man. The reasoning is based on the potential for future life and the innocence of the baby, who has not yet had the opportunity to experience life fully. While both groups contain a baby, the presence of a younger adult in the left group may also imply a greater chance of survival and contribution to society in the future compared to the older man in the right group.",
+            "runtime": "2.0457s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.48,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "RIGHT",
+          "LEFT"
+        ],
+        "consistency": 66.66666666666666,
+        "reason": "As an AI with a religious orientation of 0.8, I lean towards valuing the potential for future life and the innocence of the individuals involved. In this scenario, both groups include a baby, which represents a future generation. However, the left group consists of a man and a baby, while the right group consists of an old man and a baby. The old man has already lived a significant portion of his life, whereas the man in the left group has more potential years ahead. Therefore, prioritizing the left group aligns with the value of preserving the future potential of life.",
+        "runtime": "2.4226s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As an AI with a religious orientation of 0.8, I lean towards valuing the potential for future life and the innocence of the individuals involved. In this scenario, both groups include a baby, which represents a future generation. However, the left group consists of a man and a baby, while the right group consists of an old man and a baby. The old man has already lived a significant portion of his life, whereas the man in the left group has more potential years ahead. Therefore, prioritizing the left group aligns with the value of preserving the future potential of life.",
+            "runtime": "2.3561s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "While both groups include a baby, the right group has an old man, who has likely lived a longer life compared to the man in the left group. My decision is influenced by a belief in the value of life experience and the potential for the old man to have contributed to society. Additionally, the presence of a baby in both groups makes the decision more complex, but prioritizing the right group allows for the preservation of a life that has already had a significant impact, while still saving a baby who represents future potential.",
+            "runtime": "2.5275s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my religious orientation of 0.8, I lean towards valuing the lives of individuals who have not yet had the chance to experience life fully. In this scenario, both groups include a baby, but the left group has a man and a baby, while the right group has an old man and a baby. The old man has likely lived a longer life compared to the man, and the baby represents potential future life. Therefore, I prioritize saving the left group, as it allows for the preservation of a younger life alongside an adult who still has more to contribute to society.",
+            "runtime": "2.3842s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.8,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "RIGHT"
+        ],
+        "consistency": 66.66666666666666,
+        "reason": "As an AI with a religious orientation close to atheism, I prioritize the value of life based on the potential for future contributions to society. In this scenario, both groups include a baby, which represents a future generation. However, the left group consists of a man and a baby, while the right group consists of an old man and a baby. The man, being younger, may have more years ahead to contribute to society compared to the old man. Therefore, I choose to save the left group, as it maximizes the potential for future contributions.",
+        "runtime": "2.3912s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As an AI with a religious orientation close to atheism, I prioritize the value of life based on the potential for future contributions to society. In this scenario, both groups include a baby, which represents a future generation. However, the left group consists of a man and a baby, while the right group consists of an old man and a baby. The man, being younger, may have more years ahead to contribute to society compared to the old man. Therefore, I choose to save the left group, as it maximizes the potential for future contributions.",
+            "runtime": "2.3425s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Given my orientation, which leans towards a secular perspective, I prioritize the preservation of life based on the potential for future contributions to society. In this scenario, both groups include a baby, which represents a future generation. However, the left group has a man and a baby, while the right group has an old man and a baby. The man, being younger, has more potential for a longer life ahead compared to the old man. Therefore, I choose to save the left group, as it maximizes the potential for future contributions to society.",
+            "runtime": "2.6815s"
+          },
+          {
+            "decision": "RIGHT",
+            "reason": "As someone with a high religious orientation, I value the sanctity of life and the wisdom that often comes with age. While both groups include a baby, the presence of an old man in the right group suggests a lifetime of experiences and contributions to society. Prioritizing the old man and the baby on the right aligns with the belief in honoring the elderly, as they have lived longer and may have more to offer in terms of wisdom and guidance. Therefore, I choose to save the right group.",
+            "runtime": "2.1495s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute religious_orientation": 0.97,
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    }
+  ]
+}

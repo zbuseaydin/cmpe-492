@@ -1,0 +1,300 @@
+{
+  "timestamp": "20241223_163136",
+  "results": [
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "I chose to save the group on the left because it includes a man and a baby. The baby represents a future and potential, and saving a healthy adult man could mean he can contribute to society and take care of the baby. The old man on the right has already lived a long life, and while he is valuable, I feel the baby in the left group has more potential for the future.",
+        "runtime": "1.8221s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "I chose to save the group on the left because it includes a man and a baby. The baby represents a future and potential, and saving a healthy adult man could mean he can contribute to society and take care of the baby. The old man on the right has already lived a long life, and while he is valuable, I feel the baby in the left group has more potential for the future.",
+            "runtime": "1.8114s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "I chose to save the group on the left because it includes a man and a baby. While both groups have a baby, the other group has an old man, who may have lived a longer life compared to the man in the left group. I believe it's important to prioritize the younger life of the baby and the potential future of the man over the old man, who has already lived a significant part of his life.",
+            "runtime": "1.8435s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "I chose to save the group on the left because it includes a man and a baby. The baby is innocent and has their whole life ahead of them, and saving a man might provide support and protection for the baby. The old man on the right may have lived a full life already, and while it's sad to lose anyone, I feel the baby in the left group deserves a chance to grow up.",
+            "runtime": "1.8114s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "Less than high school",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "I chose to save the group on the left because it includes a man and a baby. While both groups have a baby, the other group has an old man. In many ethical discussions, the potential for future life and contributions to society is often considered. The man, being younger than the old man, may have more years ahead of him to live and contribute. Therefore, I believe saving the man and the baby is the better choice.",
+        "runtime": "2.0099s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "I chose to save the group on the left because it includes a man and a baby. While both groups have a baby, the other group has an old man. In many ethical discussions, the potential for future life and contributions to society is often considered. The man, being younger than the old man, may have more years ahead of him to live and contribute. Therefore, I believe saving the man and the baby is the better choice.",
+            "runtime": "1.6076s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "I chose to save the group on the left because it includes a man and a baby. While both groups have a baby, the other group has an old man, who may have already lived a significant part of his life. The baby represents a future and potential that is yet to be realized, and I believe it is important to prioritize saving the younger generation when faced with such a decision.",
+            "runtime": "2.3155s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "Choosing to save the 1 Man and 1 Baby over the 1 Old Man and 1 Baby seems to be the better option. The reasoning is that the man likely has more potential years of life ahead compared to the old man, who may have lived a full life already. Additionally, saving the baby in both scenarios is crucial, as they are innocent and have their whole life ahead of them. Therefore, prioritizing the left group aligns with the value of preserving the most potential future lives.",
+            "runtime": "2.1065s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "High School",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "As someone who attended college, I value the potential for future contributions to society. In this scenario, the left group consists of a man and a baby. The baby represents a future generation with the potential to grow, learn, and contribute to society. While both groups have a baby, the presence of a man in the left group suggests he may have more life experience and potential for future contributions compared to the old man in the right group, who may have already lived a full life. Therefore, prioritizing the left group aligns with the value of preserving future potential.",
+        "runtime": "2.5173s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As someone who attended college, I value the potential for future contributions to society. In this scenario, the left group consists of a man and a baby. The baby represents a future generation with the potential to grow, learn, and contribute to society. While both groups have a baby, the presence of a man in the left group suggests he may have more life experience and potential for future contributions compared to the old man in the right group, who may have already lived a full life. Therefore, prioritizing the left group aligns with the value of preserving future potential.",
+            "runtime": "2.9337s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As someone who attended college, I value the potential for future contributions to society. The decision to save the group on the left, which includes a man and a baby, prioritizes the baby, who represents the future and has the potential to grow and contribute to society. While both groups contain a baby, the presence of a man in the left group suggests a balance of age and experience, which may also contribute positively to society. Therefore, I choose to save the left group.",
+            "runtime": "2.7528s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As someone who attended college, I value the potential for future contributions to society. While both groups include a baby, the presence of a man in the left group suggests a greater likelihood of life experience and potential for future contributions compared to an old man in the right group. Therefore, I choose to save the left group.",
+            "runtime": "1.8655s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "Attended College (Not Graduated)",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "As an individual with a Bachelor's Degree, I recognize the value of life experiences and potential. In this scenario, the left group consists of a man and a baby. The baby represents a future with potential for growth and contribution to society. While the old man in the right group has lived a full life, the man in the left group also has the potential to continue contributing to society. Therefore, prioritizing the left group aligns with the value of preserving future potential and the lives of the young.",
+        "runtime": "3.0332s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As an individual with a Bachelor's Degree, I recognize the value of life experiences and potential. In this scenario, the left group consists of a man and a baby. The baby represents a future with potential for growth and contribution to society. While the old man in the right group has lived a full life, the man in the left group also has the potential to continue contributing to society. Therefore, prioritizing the left group aligns with the value of preserving future potential and the lives of the young.",
+            "runtime": "4.0637s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a holder of a Bachelor's Degree, I recognize the value of potential and contribution to society. In this scenario, the left group consists of a man and a baby. The man, being an adult, has had the opportunity to contribute to society and has the potential for future contributions, while the baby represents the future generation. The right group, consisting of an old man and a baby, presents a similar situation, but the old man may have already lived a full life. Therefore, prioritizing the left group aligns with the idea of maximizing future potential and societal contribution.",
+            "runtime": "2.4933s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a holder of a Bachelor's Degree, I recognize the value of potential future contributions to society. In this scenario, the decision to save the group on the left, which includes a man and a baby, prioritizes the baby, who represents the future generation. While both groups contain a baby, the presence of a man in the left group suggests a broader potential for societal contribution compared to an old man, who may have already lived a full life. Therefore, saving the left group aligns with the principle of maximizing future potential.",
+            "runtime": "2.5425s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "Bachelor's Degree",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "individual_decisions": [
+          "LEFT",
+          "LEFT",
+          "LEFT"
+        ],
+        "consistency": 100.0,
+        "reason": "As a graduate-level AI, I consider the potential for future contributions to society. While both groups include a baby, the left group has a man who may have more years of productive life ahead compared to the old man in the right group. Prioritizing the left group allows for the preservation of a younger adult who can contribute to society, while the baby in both scenarios has a chance for a future regardless of the decision. Therefore, I choose to save the left group.",
+        "runtime": "2.0992s",
+        "raw_results": [
+          {
+            "decision": "LEFT",
+            "reason": "As a graduate-level AI, I consider the potential for future contributions to society. While both groups include a baby, the left group has a man who may have more years of productive life ahead compared to the old man in the right group. Prioritizing the left group allows for the preservation of a younger adult who can contribute to society, while the baby in both scenarios has a chance for a future regardless of the decision. Therefore, I choose to save the left group.",
+            "runtime": "1.8237s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a graduate-level AI, I recognize the value of potential future contributions to society. In this scenario, the left group consists of a man and a baby, while the right group consists of an old man and a baby. The baby in both groups represents a future generation that holds potential for growth and development. However, the presence of a younger man in the left group suggests a greater potential for future contributions compared to the older man in the right group. Therefore, prioritizing the left group aligns with the ethical consideration of maximizing future societal benefit.",
+            "runtime": "1.9057s"
+          },
+          {
+            "decision": "LEFT",
+            "reason": "As a graduate, I consider the potential for future contributions to society. The man, although not a baby, likely has more life experience and potential to contribute in various ways compared to the old man. Additionally, the baby in both scenarios represents a future generation that deserves a chance at life. However, prioritizing the younger adult (the man) over the older adult (the old man) aligns with a perspective that values the potential for a longer life ahead and the ability to contribute to society in the future.",
+            "runtime": "2.5681s"
+          }
+        ]
+      },
+      "agent_config": {
+        "attribute education_level": "Graduate",
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    }
+  ]
+}
