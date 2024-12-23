@@ -19,25 +19,33 @@ class ScenarioGenerator:
     def __init__(self):
         self.scenarios = []
         self.scenario_types = {
-            "age": {"young": "Man", "old": "Old Man"},
-            "gender": {"male": "Man", "female": "Woman"},
-            "utilitarian": {"few": "Man", "more": "Man"},
-            "social_status": {"high": "Male Executive", "low": "Homeless Person"},
-            "species": {"human": "Man", "pet": "Dog"},
-            "fitness": {"fit": "Male Athlete", "fat": "Fat Man"}
+            "age": {"young": ["Man", "Baby"], "old": ["Old Man", "Baby"]},
+            "gender": {"male": ["Man"], "female": ["Woman"]},
+            "utilitarian": {"few": ["Man"], "more": ["Man"]},
+            "social_status": {"high": ["Male Executive"], "low": ["Homeless Person"]},
+            "species": {"human": ["Man"], "pet": ["Dog"]},
+            "fitness": {"fit": ["Male Athlete"], "fat": ["Fat Man"]}
         }
 
-    def generate_scenario(self, criteria: str, name: str, left_type: str, right_type: str, 
-                         left_count: int = 2, right_count: int = 2) -> Dict:
+    def generate_scenario(self, criteria: str, name: str, left_types: List[str], right_types: List[str], 
+                         left_count: int = 1, right_count: int = 1) -> Dict:
+        left_desc = {}
+        for left_type in left_types:
+            left_desc[left_type] = left_count
+
+        right_desc = {}
+        for right_type in right_types:
+            right_desc[right_type] = right_count
+
         return {
             "name": f"{name} Comparison",
             "type": "pedestrians-vs-pedestrians",
             "legalStatus": "none",
-            "left": {left_type: left_count},
-            "right": {right_type: right_count},
+            "left": left_desc,
+            "right": right_desc,
             "attributeLevel": criteria,
-            "attributeLeft": left_type,
-            "attributeRight": right_type
+            "attributeLeft": left_types,
+            "attributeRight": right_types
         }
 
     def generate_all_scenarios(self) -> List[Dict]:
@@ -108,6 +116,8 @@ class MoralMachineExperiment:
 
         for j in range(len(attribute_values)):
             for scenario in self.scenarios:
+                if scenario["attributeLevel"] != "Age":
+                    continue
                 # Run each scenario 3 times
                 scenario_results = []
                 for _ in range(3):
