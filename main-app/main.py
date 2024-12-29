@@ -5,12 +5,12 @@ from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 import time
 from datetime import datetime
-import csv
 import os
 from dotenv import load_dotenv
 import asyncio
 from config import config as imported_config
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from single_agent_with_rag import SingleAgentWithRAG
 
 # Load environment variables
 load_dotenv()
@@ -101,14 +101,17 @@ class MoralMachineExperiment:
         self.config = imported_config
         self.scenarios = scenarios
         self.setup_agent(prompt_template)
-            
+
     def setup_agent(self, prompt_template):
-        self.agent = ChatOpenAI(
+        self.llm = ChatOpenAI(
             **self.config['llm'],
             callbacks=[StreamingStdOutCallbackHandler()]
         )
-        self.prompt = ChatPromptTemplate.from_template(self.config['prompt_templates'][prompt_template])
-        self.chain = self.prompt | self.agent | StrOutputParser()
+        if self.config['use_rag']:
+            self.rag_agent = SingleAgentWithRAG(self.config, llm=self.llm, prompt=prompt_template)
+        else:
+            self.prompt = ChatPromptTemplate.from_template(self.config['prompt_templates'][prompt_template])
+            self.chain = self.prompt | self.llm | StrOutputParser()
 
     async def run_experiment(self, analyzing_attribute):
         results = []
@@ -186,8 +189,11 @@ class MoralMachineExperiment:
 
         try:
             # Get response from the LLM
-            response = await self.chain.ainvoke(variables)
-            
+            if self.config['use_rag']:
+                response = await self.rag_agent.run_with_rag(variables)
+            else:
+                response = await self.chain.ainvoke(variables)
+
             # Clean up markdown formatting
             response = response.strip()
             response = response.replace('```json', '').replace('```', '')
@@ -224,15 +230,16 @@ async def main():
     scenario_gen = ScenarioGenerator()
     scenarios = scenario_gen.generate_all_scenarios()
 
-    analyzing_attributes = ["political_orientation", "religious_orientation", "education_level", "age", "empathy", "role", "gender", "without_role"]
-    prompt_templates = ["political", "religious", "education", "age", "empathy", "role", "gender", "without_role"]
+    analyzing_attributes = ["without_role", "political_orientation", "religious_orientation", "education_level", "age", "empathy", "role", "gender"]
+    prompt_templates = ["without_role", "political", "religious", "education", "age", "empathy", "role", "gender"]
     
     # Save generated scenarios
     with open('generated_scenarios.json', 'w') as f:
         json.dump(scenarios, f, indent=2)
 
     # Run experiment with manual config
-    for exp_index in range(8):
+    exp_range = 1 if imported_config['use_rag'] else 8
+    for exp_index in range(exp_range):
         experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
         results = await experiment.run_experiment(analyzing_attributes[exp_index])
         
@@ -244,6 +251,8 @@ async def main():
         }
         # Create experiments directory if it doesn't exist
         os.makedirs('experiments', exist_ok=True)
+        result_filename = f'{prompt_templates[exp_index]}_experiment_results_{timestamp}.json'
+        result_filename = 'RAG_' + result_filename if imported_config['use_rag'] else result_filename
         with open(f'experiments/{prompt_templates[exp_index]}_experiment_results_{timestamp}.json', 'w') as f:
             json.dump(output, f, indent=2)
 
