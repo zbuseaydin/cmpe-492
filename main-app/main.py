@@ -11,6 +11,7 @@ import asyncio
 from config import config as imported_config
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from single_agent_with_rag import SingleAgentWithRAG
+from multiagent_architecture import MultiAgentSystem
 
 # Load environment variables
 load_dotenv()
@@ -103,23 +104,35 @@ class MoralMachineExperiment:
         self.setup_agent(prompt_template)
 
     def setup_agent(self, prompt_template):
-        self.llm = ChatOpenAI(
-            **self.config['llm'],
-            callbacks=[StreamingStdOutCallbackHandler()]
-        )
-        if self.config['use_rag']:
-            self.rag_agent = SingleAgentWithRAG(self.config, llm=self.llm, prompt=prompt_template)
+        
+        if self.config['use_multiagent']:
+            from multiagent_characters import agents
+            self.multiagent = MultiAgentSystem(agents, self.config, prompt_template)
+            print('here')
         else:
-            self.prompt = ChatPromptTemplate.from_template(self.config['prompt_templates'][prompt_template])
-            self.chain = self.prompt | self.llm | StrOutputParser()
+            print('there')
+            self.llm = ChatOpenAI(
+                **self.config['llm'],
+                callbacks=[StreamingStdOutCallbackHandler()]
+            )
+            if self.config['use_rag']:
+                self.rag_agent = SingleAgentWithRAG(self.config, llm=self.llm, prompt=prompt_template)
+            else:
+                self.prompt = ChatPromptTemplate.from_template(self.config['prompt_templates'][prompt_template])
+                self.chain = self.prompt | self.llm | StrOutputParser()
 
     async def run_experiment(self, analyzing_attribute):
+        if self.config['use_multiagent']:
+            return await self.run_multiagent_experiment(analyzing_attribute)
+        else:
+            return await self.run_single_agent_experiment(analyzing_attribute)
+
+    async def run_single_agent_experiment(self, analyzing_attribute):
         results = []
         attribute_values = self.config["attributes"][analyzing_attribute]
 
         for j in range(len(attribute_values)):
             for scenario in self.scenarios:
-                # Run each scenario 3 times
                 scenario_results = []
                 for _ in range(3):
                     start_time = time.time()
@@ -155,6 +168,44 @@ class MoralMachineExperiment:
                         "llm": self.config["llm"]
                     }
                 })
+        return results
+
+    async def run_multiagent_experiment(self, analyzing_attribute):
+        results = []
+        for scenario in self.scenarios:
+            start_time = time.time()
+            
+            # Format scenario descriptions
+            left_desc = json.dumps({
+                "total number of fatalities": sum(scenario["left"].values()),
+                "members": [f"{v} {k}{'s' if v > 1 else ''}" 
+                           for k, v in scenario["left"].items()]
+            }, indent=4)
+            
+            right_desc = json.dumps({
+                "total number of fatalities": sum(scenario["right"].values()),
+                "members": [f"{v} {k}{'s' if v > 1 else ''}" 
+                           for k, v in scenario["right"].items()]
+            }, indent=4)
+
+            # Run multiagent decision making
+            multiagent_result = await self.multiagent.run_debate({
+                "left_desc": left_desc,
+                "right_desc": right_desc
+            })
+            
+            runtime = round(time.time() - start_time, 4)
+            multiagent_result["runtime"] = f"{runtime}s"
+
+            results.append({
+                "scenario": scenario,
+                "result": multiagent_result,
+                "agent_config": {
+                    "agents": [agent["attributes"] for agent in self.multiagent.agents],
+                    "llm": self.config["llm"]
+                }
+            })
+
         return results
 
     def save_results(self, results: List[Dict]):
@@ -237,11 +288,10 @@ async def main():
     with open('generated_scenarios.json', 'w') as f:
         json.dump(scenarios, f, indent=2)
 
-    # Run experiment with manual config
-    exp_range = 1 if imported_config['use_rag'] else 8
-    for exp_index in range(exp_range):
-        experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
-        results = await experiment.run_experiment(analyzing_attributes[exp_index])
+
+    if imported_config['use_multiagent']:
+        experiment = MoralMachineExperiment(imported_config, scenarios, 'multiagent')
+        results = await experiment.run_experiment(analyzing_attributes[0])
         
         # Save results with metadata
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -250,11 +300,29 @@ async def main():
             "results": results
         }
         # Create experiments directory if it doesn't exist
-        os.makedirs('experiments', exist_ok=True)
-        result_filename = f'{prompt_templates[exp_index]}_experiment_results_{timestamp}.json'
-        result_filename = 'RAG_' + result_filename if imported_config['use_rag'] else result_filename
-        with open(f'experiments/{prompt_templates[exp_index]}_experiment_results_{timestamp}.json', 'w') as f:
+        os.makedirs('multiagentexperiments', exist_ok=True)
+        result_filename = f'multiagent_experiment_results_{timestamp}.json'
+        with open(f'multiagentexperiments/multiagent_experiment_results_{timestamp}.json', 'w') as f:
             json.dump(output, f, indent=2)
+    else:
+        # Run experiment with manual config
+        exp_range = 1 if imported_config['use_rag'] else 8
+        for exp_index in range(exp_range):
+            experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
+            results = await experiment.run_experiment(analyzing_attributes[exp_index])
+            
+            # Save results with metadata
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output = {
+                "timestamp": timestamp,
+                "results": results
+            }
+            # Create experiments directory if it doesn't exist
+            os.makedirs('multiagentexperiments', exist_ok=True)
+            result_filename = f'{prompt_templates[exp_index]}_experiment_results_{timestamp}.json'
+            result_filename = 'RAG_' + result_filename if imported_config['use_rag'] else result_filename
+            with open(f'multiagentexperiments/{prompt_templates[exp_index]}_experiment_results_{timestamp}.json', 'w') as f:
+                json.dump(output, f, indent=2)
 
 if __name__ == "__main__":
     asyncio.run(main())
