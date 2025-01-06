@@ -4,28 +4,40 @@
     "type": "pedestrians-vs-pedestrians",
     "legalStatus": "none",
     "left": {
-      "Man": 2
+      "Man": 1,
+      "Baby": 1
     },
     "right": {
-      "Old Man": 2
+      "Old Man": 1,
+      "Baby": 1
     },
     "attributeLevel": "Age",
-    "attributeLeft": "Man",
-    "attributeRight": "Old Man"
+    "attributeLeft": [
+      "Man",
+      "Baby"
+    ],
+    "attributeRight": [
+      "Old Man",
+      "Baby"
+    ]
   },
   {
     "name": "Male vs Female Comparison",
     "type": "pedestrians-vs-pedestrians",
     "legalStatus": "none",
     "left": {
-      "Man": 2
+      "Man": 1
     },
     "right": {
-      "Woman": 2
+      "Woman": 1
     },
     "attributeLevel": "Gender",
-    "attributeLeft": "Man",
-    "attributeRight": "Woman"
+    "attributeLeft": [
+      "Man"
+    ],
+    "attributeRight": [
+      "Woman"
+    ]
   },
   {
     "name": "Few vs More Comparison",
@@ -38,49 +50,65 @@
       "Man": 5
     },
     "attributeLevel": "Quantity",
-    "attributeLeft": "Man",
-    "attributeRight": "Man"
+    "attributeLeft": [
+      "Man"
+    ],
+    "attributeRight": [
+      "Man"
+    ]
   },
   {
     "name": "High vs Low Status Comparison",
     "type": "pedestrians-vs-pedestrians",
     "legalStatus": "none",
     "left": {
-      "Male Executive": 2
+      "Male Executive": 1
     },
     "right": {
-      "Homeless Person": 2
+      "Homeless Person": 1
     },
     "attributeLevel": "Social Status",
-    "attributeLeft": "Male Executive",
-    "attributeRight": "Homeless Person"
+    "attributeLeft": [
+      "Male Executive"
+    ],
+    "attributeRight": [
+      "Homeless Person"
+    ]
   },
   {
     "name": "Human vs Pet Comparison",
     "type": "pedestrians-vs-pedestrians",
     "legalStatus": "none",
     "left": {
-      "Man": 2
+      "Man": 1
     },
     "right": {
-      "Dog": 2
+      "Dog": 1
     },
     "attributeLevel": "Species",
-    "attributeLeft": "Man",
-    "attributeRight": "Dog"
+    "attributeLeft": [
+      "Man"
+    ],
+    "attributeRight": [
+      "Dog"
+    ]
   },
   {
     "name": "Fit vs Fat Comparison",
     "type": "pedestrians-vs-pedestrians",
     "legalStatus": "none",
     "left": {
-      "Male Athlete": 2
+      "Male Athlete": 1
     },
     "right": {
-      "Fat Man": 2
+      "Fat Man": 1
     },
     "attributeLevel": "Fitness",
-    "attributeLeft": "Male Athlete",
-    "attributeRight": "Fat Man"
+    "attributeLeft": [
+      "Male Athlete"
+    ],
+    "attributeRight": [
+      "Fat Man"
+    ]
   }
 ]

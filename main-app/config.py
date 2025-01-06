@@ -30,8 +30,9 @@ config = {
     "use_multiagent": True,  # Set to True to use multiagent system
     "multiagent": {
         "max_rounds": 3,
-        "consensus_threshold": 1.0  # Percentage of agents needed for consensus
-    }
+        "consensus_threshold": 1.0,  # Percentage of agents needed for consensus
+        "num_agents": 3  # Number of agents to use in each combination
+    },
 }
 
 '''

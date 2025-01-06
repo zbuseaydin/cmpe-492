@@ -7,6 +7,7 @@ import json
 from datetime import datetime
 import time
 from langgraph.graph import Graph, StateGraph
+from graphviz import Digraph
 
 class AgentState(TypedDict):
     """The state of the agent system."""
@@ -181,7 +182,7 @@ class MultiAgentSystem:
 Previous round decisions and reasoning:
 {previous_decisions}
 
-Based on the above discussion, would you like to change your decision or defend your previous choice?
+Based on the above discussion, would you like to change your decision?
 Consider your attributes:
 - Gender: {agent_gender}
 - Role: {agent_role}
@@ -263,3 +264,65 @@ Provide your decision in JSON format:
         # Clean the result of any markdown formatting
         result = result.strip().replace('```json', '').replace('```', '')
         return json.loads(result)
+
+def create_architecture_diagram():
+    # Create a new directed graph
+    dot = Digraph(graph_attr={'layout': 'dot'})
+    dot.attr(rankdir='TB')
+    
+    # Graph styling
+    dot.attr('node', shape='box', style='rounded,filled', fillcolor='lightgray')
+    
+    # Create main cluster for the entire system
+    with dot.subgraph(name='cluster_main') as main:
+        main.attr(label='MultiAgent System', style='rounded', color='blue')
+        
+        # Add central message pool
+        main.node('message_pool', 'Message Pool\n& State Management', 
+                 shape='circle', fillcolor='lightyellow', style='filled')
+        
+        # Add decision aggregator below message pool
+        main.node('aggregator', 'Decision\nAggregator', 
+                 shape='hexagon', fillcolor='lightpink', style='filled')
+        
+        # Create invisible nodes to help with circular layout
+        for i in range(8):
+            main.node(f'invisible_{i}', '', style='invis', shape='point')
+        
+        # Add agents in a circular arrangement
+        agents = [
+            "Environmental\nScientist (F)",
+            "Economist (M)",
+            "Humanitarian\nWorker (F)",
+            "Teacher (M)",
+            "Retired Military\nOfficer (M)",
+            "Artist (F)",
+            "Healthcare\nProfessional (F)",
+            "Software\nEngineer (M)"
+        ]
+        
+        # Add agent nodes
+        for i, agent in enumerate(agents):
+            main.node(f'agent_{i}', agent, 
+                     shape='circle', fillcolor='lightblue', style='filled')
+            
+            # Connect each agent to message pool bidirectionally
+            main.edge(f'agent_{i}', 'message_pool', dir='both')
+        
+        # Connect message pool to aggregator
+        main.edge('message_pool', 'aggregator')
+        main.edge('aggregator', 'message_pool')
+        
+        # Add circular arrangement constraints
+        main.attr(layout='circo')
+        
+        # Add prompt templates node
+        main.node('prompts', 'Prompt\nTemplates', 
+                 shape='note', fillcolor='lightgreen', style='filled')
+        main.edge('prompts', 'message_pool')
+    
+    # Save the diagram
+    dot.render('multiagent_architecture', format='png', cleanup=True)
+
+if __name__ == "__main__":
+    create_architecture_diagram()
