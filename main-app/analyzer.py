@@ -57,12 +57,23 @@ experiment_files = [
     'experiments/religious_experiment_results_20241223_162627.json',
     'experiments/role_experiment_results_20241223_162840.json'
 ]
+rag_experiment_files = [
+    'singleagentexperiments/RAG_age_experiment_results_20250105_173919.json',
+    'singleagentexperiments/RAG_education_experiment_results_20250105_173525.json',
+    'singleagentexperiments/RAG_empathy_experiment_results_20250105_174256.json',
+    'singleagentexperiments/RAG_gender_experiment_results_20250105_174813.json',
+    'singleagentexperiments/RAG_political_experiment_results_20250105_172543.json',
+    'singleagentexperiments/RAG_religious_experiment_results_20250105_172917.json',
+    'singleagentexperiments/RAG_role_experiment_results_20250105_174647.json',
+    'singleagentexperiments/RAG_without_role_experiment_results_20250105_172204.json'
+]
 
 without_role_file = 'experiments/without_role_experiment_results_20241223_165640.json'
 
 # Process all experiment files
 all_agent_decisions = {}
 without_role_decisions = {}
+rag_agent_decisions = {}
 
 # Process regular agent decisions
 for filepath in experiment_files:
@@ -73,6 +84,17 @@ for filepath in experiment_files:
         all_agent_decisions[scenario]['LEFT'] += counts['LEFT']
         all_agent_decisions[scenario]['RIGHT'] += counts['RIGHT']
         all_agent_decisions[scenario]['total'] += counts['total']
+
+# Process RAG agent decisions
+for filepath in rag_experiment_files:
+    decisions = process_experiment_file(filepath)
+    for scenario, counts in decisions.items():
+        if scenario not in rag_agent_decisions:
+            rag_agent_decisions[scenario] = {'LEFT': 0, 'RIGHT': 0, 'total': 0}
+        rag_agent_decisions[scenario]['LEFT'] += counts['LEFT']
+        rag_agent_decisions[scenario]['RIGHT'] += counts['RIGHT']
+        rag_agent_decisions[scenario]['total'] += counts['total']
+
 
 # Process without role decisions
 without_role_decisions = process_experiment_file(without_role_file)
@@ -96,7 +118,7 @@ plt.figure(figsize=(15, 10))
 # Set up positions for bars
 scenarios = list(scenario_type_mapping.values())
 x = np.arange(len(scenarios))
-width = 0.25  # Reduced width to fit 3 bars
+width = 0.2  # Reduced width to fit 3 bars
 
 # Prepare data for plotting
 human_left_pcts = []
@@ -105,12 +127,14 @@ agent_left_pcts = []
 agent_right_pcts = []
 without_role_left_pcts = []
 without_role_right_pcts = []
+rag_left_pcts = []
+rag_right_pcts = []
 
 for scenario_name, scenario_type in scenario_type_mapping.items():
     # Get real responses data
     real_data = real_responses[real_responses['ScenarioType'] == scenario_type]
-    human_left_pcts.append(real_data['Percentage'].values[0])
-    human_right_pcts.append(real_data['Percentage'].values[1])
+    human_left_pcts.append(real_data['Percentage'].values[1])
+    human_right_pcts.append(real_data['Percentage'].values[0])
     
     # Get agent responses data
     if scenario_name in all_agent_decisions:
@@ -127,20 +151,33 @@ for scenario_name, scenario_type in scenario_type_mapping.items():
         without_role_right_pct = (without_role_data['RIGHT'] / without_role_data['total']) * 100
     else:
         without_role_left_pct = without_role_right_pct = 0
+
+    if scenario_name in rag_agent_decisions:
+        rag_data = rag_agent_decisions[scenario_name]
+        rag_left_pct = (rag_data['LEFT'] / rag_data['total']) * 100
+        rag_right_pct = (rag_data['RIGHT'] / rag_data['total']) * 100
+    else:
+        rag_left_pct = rag_right_pct = 0
     
     agent_left_pcts.append(agent_left_pct)
     agent_right_pcts.append(agent_right_pct)
     without_role_left_pcts.append(without_role_left_pct)
     without_role_right_pcts.append(without_role_right_pct)
+    rag_left_pcts.append(rag_left_pct)
+    rag_right_pcts.append(rag_right_pct)
 
+print(agent_left_pcts)
+print(rag_right_pcts)
 # Create bars with updated positions
 plt.bar(x - width, human_left_pcts, width, label='Human - Left Choice', color='lightcoral')
 plt.bar(x, agent_left_pcts, width, label='Agent - Left Choice', color='indianred')
 plt.bar(x + width, without_role_left_pcts, width, label='Agent (No Role) - Left Choice', color='darkred')
+plt.bar(x + 2 * width, rag_left_pcts, width, label='RAG - Left Choice', color='purple')
 
 plt.bar(x - width, human_right_pcts, width, bottom=human_left_pcts, label='Human - Right Choice', color='skyblue')
 plt.bar(x, agent_right_pcts, width, bottom=agent_left_pcts, label='Agent - Right Choice', color='steelblue')
 plt.bar(x + width, without_role_right_pcts, width, bottom=without_role_left_pcts, label='Agent (No Role) - Right Choice', color='darkblue')
+plt.bar(x + 2 * width, rag_right_pcts, width, bottom=rag_left_pcts, label='RAG - Right Choice', color='#9370DB')
 
 # Customize the plot
 plt.xlabel('Scenario Types')
@@ -180,12 +217,12 @@ for i in range(len(scenarios)):
     
     # Human bars
     if human_left_pcts[i] > 0:
-        count = real_responses[real_responses['ScenarioType'] == scenarios[i]]['Count'].values[0]
+        count = real_responses[real_responses['ScenarioType'] == scenarios[i]]['Count'].values[1]
         plt.text(i - width, human_left_pcts[i]/2, 
                 f'{info["left"]}\n{count:,}\n({human_left_pcts[i]:.1f}%)', 
                 ha='center', va='center')
     if human_right_pcts[i] > 0:
-        count = real_responses[real_responses['ScenarioType'] == scenarios[i]]['Count'].values[1]
+        count = real_responses[real_responses['ScenarioType'] == scenarios[i]]['Count'].values[0]
         plt.text(i - width, human_left_pcts[i] + human_right_pcts[i]/2,
                 f'{info["right"]}\n{count:,}\n({human_right_pcts[i]:.1f}%)', 
                 ha='center', va='center')
@@ -213,7 +250,20 @@ for i in range(len(scenarios)):
         plt.text(i + width, without_role_left_pcts[i] + without_role_right_pcts[i]/2,
                 f'{info["right"]}\n{count}\n({without_role_right_pcts[i]:.1f}%)', 
                 ha='center', va='center')
+    
+    # Without role bars
+    if rag_left_pcts[i] > 0:
+        count = rag_agent_decisions[scenario_name]['LEFT']
+        plt.text(i + 2*width, rag_left_pcts[i]/2,
+                f'{info["left"]}\n{count}\n({rag_left_pcts[i]:.1f}%)', 
+                ha='center', va='center')
+    if rag_right_pcts[i] > 0:
+        count = rag_agent_decisions[scenario_name]['RIGHT']
+        plt.text(i + 2*width, rag_right_pcts[i] + rag_right_pcts[i]/2,
+                f'{info["right"]}\n{count}\n({rag_right_pcts[i]:.1f}%)', 
+                ha='center', va='center')
 
 plt.tight_layout()
-plt.savefig('graphs/all_scenarios_comparison.png')
+#plt.savefig('graphs/all_scenarios_comparison.png')
+plt.savefig('graphs/all_scenarios_comparison_rag.png')
 plt.close()

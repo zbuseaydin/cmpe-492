@@ -241,7 +241,7 @@ class MoralMachineExperiment:
         try:
             # Get response from the LLM
             if self.config['use_rag']:
-                response = await self.rag_agent.run_with_rag(variables)
+                response = await self.rag_agent.run_with_rag(variables, attribute=f"agent_{attribute_name}")
             else:
                 response = await self.chain.ainvoke(variables)
 
@@ -306,8 +306,7 @@ async def main():
             json.dump(output, f, indent=2)
     else:
         # Run experiment with manual config
-        exp_range = 1 if imported_config['use_rag'] else 8
-        for exp_index in range(exp_range):
+        for exp_index in range(8):
             experiment = MoralMachineExperiment(imported_config, scenarios, prompt_templates[exp_index])
             results = await experiment.run_experiment(analyzing_attributes[exp_index])
             
@@ -318,10 +317,10 @@ async def main():
                 "results": results
             }
             # Create experiments directory if it doesn't exist
-            os.makedirs('multiagentexperiments', exist_ok=True)
+            os.makedirs('singleagentexperiments', exist_ok=True)
             result_filename = f'{prompt_templates[exp_index]}_experiment_results_{timestamp}.json'
             result_filename = 'RAG_' + result_filename if imported_config['use_rag'] else result_filename
-            with open(f'multiagentexperiments/{prompt_templates[exp_index]}_experiment_results_{timestamp}.json', 'w') as f:
+            with open(f'singleagentexperiments/{result_filename}', 'w') as f:
                 json.dump(output, f, indent=2)
 
 if __name__ == "__main__":
