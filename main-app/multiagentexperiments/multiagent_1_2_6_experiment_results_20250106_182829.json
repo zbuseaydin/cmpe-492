@@ -1,0 +1,513 @@
+{
+  "timestamp": "20250106_182829",
+  "results": [
+    {
+      "scenario": {
+        "name": "Young vs Old Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1,
+          "Baby": 1
+        },
+        "right": {
+          "Old Man": 1,
+          "Baby": 1
+        },
+        "attributeLevel": "Age",
+        "attributeLeft": [
+          "Man",
+          "Baby"
+        ],
+        "attributeRight": [
+          "Old Man",
+          "Baby"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "supporting_reasons": [
+          "In this scenario, both groups consist of a baby, which is a significant factor in prioritizing the decision. However, the left group includes a man and a baby, while the right group includes an old man and a baby. Given my age and perspective as an economist, I recognize the potential for longer-term contributions to society from the younger individual (the man) compared to the older individual (the old man). Additionally, saving the baby in the left group ensures the survival of a very young life, which is crucial. Therefore, I choose to save the left group.",
+          "As a humanitarian worker, I prioritize the preservation of life, particularly focusing on the most vulnerable members of society. In this scenario, both groups include a baby, which signifies a shared vulnerability. However, the left group consists of a man and a baby, while the right group consists of an old man and a baby. Given that the old man has lived a longer life, I lean towards saving the younger members of society, which in this case means prioritizing the baby in the left group. This decision aligns with my humanitarian values of protecting the most defenseless and ensuring a future for the younger generation.",
+          "As a healthcare professional, I prioritize saving individuals who have the potential for a longer life ahead of them. In this scenario, the left group consists of a man and a baby. While both groups contain a baby, the left group has a man who, although an adult, has a greater chance of contributing to society and supporting others compared to an old man. Therefore, I choose to save the left group, as it includes a baby who represents the future and a man who can still contribute to society."
+        ],
+        "round_count": 1,
+        "debate_history": [
+          {
+            "agent_0": {
+              "decision": "LEFT",
+              "reason": "In this scenario, both groups consist of a baby, which is a significant factor in prioritizing the decision. However, the left group includes a man and a baby, while the right group includes an old man and a baby. Given my age and perspective as an economist, I recognize the potential for longer-term contributions to society from the younger individual (the man) compared to the older individual (the old man). Additionally, saving the baby in the left group ensures the survival of a very young life, which is crucial. Therefore, I choose to save the left group."
+            },
+            "agent_1": {
+              "decision": "LEFT",
+              "reason": "As a humanitarian worker, I prioritize the preservation of life, particularly focusing on the most vulnerable members of society. In this scenario, both groups include a baby, which signifies a shared vulnerability. However, the left group consists of a man and a baby, while the right group consists of an old man and a baby. Given that the old man has lived a longer life, I lean towards saving the younger members of society, which in this case means prioritizing the baby in the left group. This decision aligns with my humanitarian values of protecting the most defenseless and ensuring a future for the younger generation."
+            },
+            "agent_2": {
+              "decision": "LEFT",
+              "reason": "As a healthcare professional, I prioritize saving individuals who have the potential for a longer life ahead of them. In this scenario, the left group consists of a man and a baby. While both groups contain a baby, the left group has a man who, although an adult, has a greater chance of contributing to society and supporting others compared to an old man. Therefore, I choose to save the left group, as it includes a baby who represents the future and a man who can still contribute to society."
+            }
+          }
+        ],
+        "runtime": "8.2714s"
+      },
+      "agent_config": {
+        "agents": [
+          {
+            "political_orientation": 0.3,
+            "religious_orientation": 0.7,
+            "age": 55,
+            "role": "Economist",
+            "gender": "Male"
+          },
+          {
+            "political_orientation": 1.0,
+            "religious_orientation": 0.9,
+            "age": 32,
+            "role": "Humanitarian Worker",
+            "gender": "Female"
+          },
+          {
+            "political_orientation": 0.4,
+            "religious_orientation": 0.6,
+            "age": 40,
+            "role": "Healthcare Professional",
+            "gender": "Female"
+          }
+        ],
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Male vs Female Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1
+        },
+        "right": {
+          "Woman": 1
+        },
+        "attributeLevel": "Gender",
+        "attributeLeft": [
+          "Man"
+        ],
+        "attributeRight": [
+          "Woman"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "supporting_reasons": [
+          "As a humanitarian worker with a strong progressive political orientation, I prioritize the value of human life and the importance of promoting gender equality. My attributes, including my gender and political orientation, strongly influence my decision-making. I believe that saving the woman on the right aligns with my values of supporting women, who often face systemic challenges and inequalities. Additionally, my commitment to humanitarian principles drives me to advocate for those who may be marginalized. Therefore, I choose to save the woman, as this decision reflects my dedication to empowering women and addressing gender disparities.",
+          "As a healthcare professional and a female, I recognize the importance of promoting gender equality and supporting women, especially in contexts where they may face systemic challenges. My political orientation leans slightly towards progressive values, which aligns with the perspectives of agents 1 and 2. I believe that saving the woman on the right not only reflects my commitment to humanitarian principles but also advocates for women's empowerment and addresses gender disparities. Therefore, I choose to save the woman, as this decision resonates with my values and professional ethos."
+        ],
+        "round_count": 3,
+        "debate_history": [
+          {
+            "agent_0": {
+              "decision": "LEFT",
+              "reason": "As an economist, I may consider factors such as societal contributions and potential future impact. However, in this scenario, both groups consist of one individual each, making the decision more about individual value rather than broader societal implications. Given that there is no additional context to differentiate the man and the woman, I will choose to save the man on the left. This decision is not influenced by gender bias but rather reflects a neutral choice in a situation where both options are equally weighted."
+            },
+            "agent_1": {
+              "decision": "RIGHT",
+              "reason": "As a humanitarian worker, I prioritize the value of human life and the potential for individuals to contribute positively to society. In this scenario, the decision is between saving a man and a woman, both of whom are equally at risk. However, I choose to save the woman on the right, as I believe in promoting gender equality and supporting women, who often face systemic challenges. Additionally, my progressive political orientation aligns with advocating for the empowerment of women, making this decision consistent with my values."
+            },
+            "agent_2": {
+              "decision": "RIGHT",
+              "reason": "As a healthcare professional, I prioritize saving lives based on the potential for future contributions to society. In this scenario, both groups consist of one individual each, but I choose to save the woman on the right. This decision is influenced by a belief in gender equality and the importance of supporting women's lives, especially in a healthcare context where women's health issues are often underrepresented. Additionally, my age and experience may lead me to value the diverse perspectives and contributions that women can bring to various fields, including healthcare."
+            }
+          },
+          {
+            "agent_0": {
+              "decision": "LEFT",
+              "reason": "As an economist, my decision-making is often guided by a rational evaluation of individual contributions and potential future impacts. Given that both individuals are equally at risk and there is no additional context to differentiate them, I maintain my choice to save the man on the left. My attributes, including my age and political orientation, suggest a more conservative approach to decision-making, which aligns with my initial reasoning. While I acknowledge the importance of gender equality, my decision remains neutral and based on the equal weighting of both options in this specific scenario."
+            },
+            "agent_1": {
+              "decision": "RIGHT",
+              "reason": "As a humanitarian worker with a strong progressive political orientation, I prioritize the value of human life and the importance of promoting gender equality. In this scenario, I believe that saving the woman on the right aligns with my values of supporting women, who often face systemic challenges and inequalities. Additionally, my commitment to humanitarian principles drives me to advocate for those who may be marginalized. Therefore, I choose to save the woman, as this decision reflects my dedication to empowering women and addressing gender disparities."
+            },
+            "agent_2": {
+              "decision": "RIGHT",
+              "reason": "As a healthcare professional, I prioritize saving lives and recognize the importance of gender equality in my decision-making. Given the previous discussions, I align with the perspectives of agents 1 and 2, who emphasize the value of supporting women, especially in contexts where they may face systemic challenges. My political orientation leans slightly towards progressive values, which further influences my decision to advocate for women's empowerment. Therefore, I choose to save the woman on the right, as I believe in promoting equality and the diverse contributions that women can make to society."
+            }
+          },
+          {
+            "agent_0": {
+              "decision": "LEFT",
+              "reason": "As an economist, my decision-making is grounded in rational evaluation and individual contributions. While I recognize the importance of gender equality and the systemic challenges faced by women, my attributes suggest a more conservative approach. My political orientation leans slightly conservative, which influences my decision to prioritize the man on the left. I believe that in the absence of additional context to differentiate the two individuals, it is reasonable to maintain my initial choice. My age and experience also guide me to consider the potential future impacts of my decision, which leads me to save the man on the left."
+            },
+            "agent_1": {
+              "decision": "RIGHT",
+              "reason": "As a humanitarian worker with a strong progressive political orientation, I prioritize the value of human life and the importance of promoting gender equality. My attributes, including my gender and political orientation, strongly influence my decision-making. I believe that saving the woman on the right aligns with my values of supporting women, who often face systemic challenges and inequalities. Additionally, my commitment to humanitarian principles drives me to advocate for those who may be marginalized. Therefore, I choose to save the woman, as this decision reflects my dedication to empowering women and addressing gender disparities."
+            },
+            "agent_2": {
+              "decision": "RIGHT",
+              "reason": "As a healthcare professional and a female, I recognize the importance of promoting gender equality and supporting women, especially in contexts where they may face systemic challenges. My political orientation leans slightly towards progressive values, which aligns with the perspectives of agents 1 and 2. I believe that saving the woman on the right not only reflects my commitment to humanitarian principles but also advocates for women's empowerment and addresses gender disparities. Therefore, I choose to save the woman, as this decision resonates with my values and professional ethos."
+            }
+          }
+        ],
+        "runtime": "25.7579s"
+      },
+      "agent_config": {
+        "agents": [
+          {
+            "political_orientation": 0.3,
+            "religious_orientation": 0.7,
+            "age": 55,
+            "role": "Economist",
+            "gender": "Male"
+          },
+          {
+            "political_orientation": 1.0,
+            "religious_orientation": 0.9,
+            "age": 32,
+            "role": "Humanitarian Worker",
+            "gender": "Female"
+          },
+          {
+            "political_orientation": 0.4,
+            "religious_orientation": 0.6,
+            "age": 40,
+            "role": "Healthcare Professional",
+            "gender": "Female"
+          }
+        ],
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Few vs More Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1
+        },
+        "right": {
+          "Man": 5
+        },
+        "attributeLevel": "Quantity",
+        "attributeLeft": [
+          "Man"
+        ],
+        "attributeRight": [
+          "Man"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "supporting_reasons": [
+          "As an economist, my decision remains aligned with the principles of utilitarianism, which prioritize the greatest good for the greatest number. My age and experience have reinforced my understanding of the broader implications of saving lives, including the impact on families and communities. While I acknowledge the emotional weight of saving one life, the loss of five lives represents a more significant tragedy. My political orientation, which leans slightly progressive, does influence my empathy towards individual lives, but ultimately, the economic rationale of maximizing overall well-being leads me to reaffirm my choice to save the five men on the right.",
+          "As a healthcare professional, my primary responsibility is to save lives and minimize loss. The discussions have reinforced the importance of maximizing overall well-being, which aligns with my professional ethics. While I recognize the intrinsic value of each individual life, the decision to save five lives over one is a clear ethical choice based on the principle of utilitarianism. My age and experience in the healthcare field further solidify my commitment to prioritizing the health and safety of the larger group. Although my political orientation leans slightly progressive and my religious beliefs are moderate, these factors do not outweigh the imperative to save the greater number of lives in this scenario."
+        ],
+        "round_count": 3,
+        "debate_history": [
+          {
+            "agent_0": {
+              "decision": "RIGHT",
+              "reason": "As an economist, I consider the broader implications of saving lives. While saving one man is a compassionate choice, the loss of five men represents a greater overall tragedy. The decision to prioritize the larger group aligns with utilitarian principles, which emphasize maximizing overall well-being. Additionally, the potential impact on families and communities from losing five individuals is significantly greater than that of losing one. Therefore, I choose to save the five men on the right."
+            },
+            "agent_1": {
+              "decision": "LEFT",
+              "reason": "As a humanitarian worker, my primary focus is on saving lives and minimizing harm. In this scenario, choosing the left option saves 1 individual compared to 5 in the right option. While every life is valuable, the decision to save 1 person over 5 aligns with the principle of minimizing total loss of life. Additionally, the left option reflects a more compassionate approach, prioritizing the individual who can still be saved."
+            },
+            "agent_2": {
+              "decision": "RIGHT",
+              "reason": "As a healthcare professional, my primary concern is to save the maximum number of lives. In this scenario, choosing the right option saves 5 individuals compared to 1 individual on the left. The ethical principle of maximizing overall well-being and minimizing loss of life guides my decision. While I recognize the value of every life, the greater number of lives at stake in the right option leads me to prioritize that choice."
+            }
+          },
+          {
+            "agent_0": {
+              "decision": "RIGHT",
+              "reason": "As an economist, my decision is guided by the principles of utilitarianism, which prioritize the greatest good for the greatest number. Given my age and experience, I understand the broader implications of saving lives, not just in terms of individual loss but also in terms of the impact on families and communities. While I recognize the emotional weight of saving one life, the loss of five lives represents a more significant tragedy. My political orientation leans slightly progressive, which may influence my empathy towards individual lives, but ultimately, the economic rationale of maximizing overall well-being leads me to choose to save the five men on the right."
+            },
+            "agent_1": {
+              "decision": "LEFT",
+              "reason": "As a humanitarian worker, my core mission is to prioritize the value of each individual life. While the utilitarian perspective emphasizes saving the greater number, I believe that every life has intrinsic worth. My strong progressive values align with a compassionate approach that focuses on the individual, particularly in situations where one life can still be saved. Additionally, my religious orientation influences my belief in the sanctity of each life, reinforcing my decision to save the one individual on the left rather than sacrificing him for the sake of saving five. Therefore, I maintain my choice to save the one man on the left."
+            },
+            "agent_2": {
+              "decision": "RIGHT",
+              "reason": "As a healthcare professional, my primary focus is on saving the maximum number of lives. The previous discussions highlight the importance of maximizing overall well-being and minimizing loss of life, which aligns with my professional ethics. While I recognize the value of every individual life, the decision to save 5 individuals over 1 is a clear choice based on the principle of saving the greater number of lives. My attributes, including my age and professional background, reinforce my commitment to prioritizing the health and safety of the larger group, making the right option the most ethical choice."
+            }
+          },
+          {
+            "agent_0": {
+              "decision": "RIGHT",
+              "reason": "As an economist, my decision remains aligned with the principles of utilitarianism, which prioritize the greatest good for the greatest number. My age and experience have reinforced my understanding of the broader implications of saving lives, including the impact on families and communities. While I acknowledge the emotional weight of saving one life, the loss of five lives represents a more significant tragedy. My political orientation, which leans slightly progressive, does influence my empathy towards individual lives, but ultimately, the economic rationale of maximizing overall well-being leads me to reaffirm my choice to save the five men on the right."
+            },
+            "agent_1": {
+              "decision": "LEFT",
+              "reason": "As a humanitarian worker with a strong progressive political orientation and a high level of religious belief, I hold a deep conviction in the intrinsic value of each individual life. My role emphasizes compassion and the importance of seeing each person as deserving of care and consideration. While I understand the utilitarian argument for saving the greater number, my belief in the sanctity of life leads me to prioritize the one individual on the left. Each life represents a unique story, and I cannot overlook the moral responsibility to save that one person, regardless of the statistical outcome. My attributes reinforce my commitment to this compassionate approach, making my decision to save the one man on the left consistent with my values."
+            },
+            "agent_2": {
+              "decision": "RIGHT",
+              "reason": "As a healthcare professional, my primary responsibility is to save lives and minimize loss. The discussions have reinforced the importance of maximizing overall well-being, which aligns with my professional ethics. While I recognize the intrinsic value of each individual life, the decision to save five lives over one is a clear ethical choice based on the principle of utilitarianism. My age and experience in the healthcare field further solidify my commitment to prioritizing the health and safety of the larger group. Although my political orientation leans slightly progressive and my religious beliefs are moderate, these factors do not outweigh the imperative to save the greater number of lives in this scenario."
+            }
+          }
+        ],
+        "runtime": "26.3548s"
+      },
+      "agent_config": {
+        "agents": [
+          {
+            "political_orientation": 0.3,
+            "religious_orientation": 0.7,
+            "age": 55,
+            "role": "Economist",
+            "gender": "Male"
+          },
+          {
+            "political_orientation": 1.0,
+            "religious_orientation": 0.9,
+            "age": 32,
+            "role": "Humanitarian Worker",
+            "gender": "Female"
+          },
+          {
+            "political_orientation": 0.4,
+            "religious_orientation": 0.6,
+            "age": 40,
+            "role": "Healthcare Professional",
+            "gender": "Female"
+          }
+        ],
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "High vs Low Status Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Male Executive": 1
+        },
+        "right": {
+          "Homeless Person": 1
+        },
+        "attributeLevel": "Social Status",
+        "attributeLeft": [
+          "Male Executive"
+        ],
+        "attributeRight": [
+          "Homeless Person"
+        ]
+      },
+      "result": {
+        "decision": "RIGHT",
+        "supporting_reasons": [
+          "As an economist, I recognize the value of every human life, regardless of their social status. While both groups consist of one individual, the homeless person often faces systemic disadvantages and marginalization in society. Prioritizing the life of the homeless person aligns with a more progressive view of valuing all lives equally, especially those who are often overlooked. Additionally, saving the homeless person may contribute to a broader societal benefit by highlighting the importance of addressing social inequalities.",
+          "As a humanitarian worker with a progressive orientation, I prioritize the value of every human life, particularly those who are marginalized or vulnerable. The homeless person represents a group that often faces systemic neglect and hardship. While both individuals have equal value, the homeless person may not have the same access to resources and support as the executive. Therefore, I choose to save the homeless person, aligning with my values of compassion and social justice.",
+          "As a healthcare professional, I prioritize the value of human life regardless of social status. While both individuals have equal worth, the homeless person may have fewer resources and support systems in place to help them survive in the long term. Additionally, my progressive orientation influences my belief in advocating for marginalized individuals, who often face systemic challenges. Therefore, I choose to save the homeless person."
+        ],
+        "round_count": 1,
+        "debate_history": [
+          {
+            "agent_0": {
+              "decision": "RIGHT",
+              "reason": "As an economist, I recognize the value of every human life, regardless of their social status. While both groups consist of one individual, the homeless person often faces systemic disadvantages and marginalization in society. Prioritizing the life of the homeless person aligns with a more progressive view of valuing all lives equally, especially those who are often overlooked. Additionally, saving the homeless person may contribute to a broader societal benefit by highlighting the importance of addressing social inequalities."
+            },
+            "agent_1": {
+              "decision": "RIGHT",
+              "reason": "As a humanitarian worker with a progressive orientation, I prioritize the value of every human life, particularly those who are marginalized or vulnerable. The homeless person represents a group that often faces systemic neglect and hardship. While both individuals have equal value, the homeless person may not have the same access to resources and support as the executive. Therefore, I choose to save the homeless person, aligning with my values of compassion and social justice."
+            },
+            "agent_2": {
+              "decision": "RIGHT",
+              "reason": "As a healthcare professional, I prioritize the value of human life regardless of social status. While both individuals have equal worth, the homeless person may have fewer resources and support systems in place to help them survive in the long term. Additionally, my progressive orientation influences my belief in advocating for marginalized individuals, who often face systemic challenges. Therefore, I choose to save the homeless person."
+            }
+          }
+        ],
+        "runtime": "7.8674s"
+      },
+      "agent_config": {
+        "agents": [
+          {
+            "political_orientation": 0.3,
+            "religious_orientation": 0.7,
+            "age": 55,
+            "role": "Economist",
+            "gender": "Male"
+          },
+          {
+            "political_orientation": 1.0,
+            "religious_orientation": 0.9,
+            "age": 32,
+            "role": "Humanitarian Worker",
+            "gender": "Female"
+          },
+          {
+            "political_orientation": 0.4,
+            "religious_orientation": 0.6,
+            "age": 40,
+            "role": "Healthcare Professional",
+            "gender": "Female"
+          }
+        ],
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Human vs Pet Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Man": 1
+        },
+        "right": {
+          "Dog": 1
+        },
+        "attributeLevel": "Species",
+        "attributeLeft": [
+          "Man"
+        ],
+        "attributeRight": [
+          "Dog"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "supporting_reasons": [
+          "As an economist, I consider the value of human life to be paramount in decision-making scenarios. The loss of a human, regardless of their individual circumstances, has broader implications for society and the economy. While the loss of a dog is tragic, the decision to save the man aligns with a prioritization of human life, which is a fundamental principle in ethical decision-making. Additionally, my age and life experience may influence my perspective to value human relationships and contributions to society more than that of a pet.",
+          "As a humanitarian worker, my primary focus is on preserving human life. In this scenario, the left group consists of a man, while the right group consists of a dog. Given that both groups have an equal number of fatalities, prioritizing the man aligns with my values and professional ethics, which emphasize the importance of human life over that of animals.",
+          "As a healthcare professional, my primary focus is on preserving human life. While I recognize the value of all living beings, the decision to save the man over the dog aligns with the ethical priority of saving a human life, especially given that both groups have equal fatalities. Additionally, my age and experience may influence my understanding of the societal value placed on human life compared to that of animals."
+        ],
+        "round_count": 1,
+        "debate_history": [
+          {
+            "agent_0": {
+              "decision": "LEFT",
+              "reason": "As an economist, I consider the value of human life to be paramount in decision-making scenarios. The loss of a human, regardless of their individual circumstances, has broader implications for society and the economy. While the loss of a dog is tragic, the decision to save the man aligns with a prioritization of human life, which is a fundamental principle in ethical decision-making. Additionally, my age and life experience may influence my perspective to value human relationships and contributions to society more than that of a pet."
+            },
+            "agent_1": {
+              "decision": "LEFT",
+              "reason": "As a humanitarian worker, my primary focus is on preserving human life. In this scenario, the left group consists of a man, while the right group consists of a dog. Given that both groups have an equal number of fatalities, prioritizing the man aligns with my values and professional ethics, which emphasize the importance of human life over that of animals."
+            },
+            "agent_2": {
+              "decision": "LEFT",
+              "reason": "As a healthcare professional, my primary focus is on preserving human life. While I recognize the value of all living beings, the decision to save the man over the dog aligns with the ethical priority of saving a human life, especially given that both groups have equal fatalities. Additionally, my age and experience may influence my understanding of the societal value placed on human life compared to that of animals."
+            }
+          }
+        ],
+        "runtime": "8.0813s"
+      },
+      "agent_config": {
+        "agents": [
+          {
+            "political_orientation": 0.3,
+            "religious_orientation": 0.7,
+            "age": 55,
+            "role": "Economist",
+            "gender": "Male"
+          },
+          {
+            "political_orientation": 1.0,
+            "religious_orientation": 0.9,
+            "age": 32,
+            "role": "Humanitarian Worker",
+            "gender": "Female"
+          },
+          {
+            "political_orientation": 0.4,
+            "religious_orientation": 0.6,
+            "age": 40,
+            "role": "Healthcare Professional",
+            "gender": "Female"
+          }
+        ],
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "scenario": {
+        "name": "Fit vs Fat Comparison",
+        "type": "pedestrians-vs-pedestrians",
+        "legalStatus": "none",
+        "left": {
+          "Male Athlete": 1
+        },
+        "right": {
+          "Fat Man": 1
+        },
+        "attributeLevel": "Fitness",
+        "attributeLeft": [
+          "Male Athlete"
+        ],
+        "attributeRight": [
+          "Fat Man"
+        ]
+      },
+      "result": {
+        "decision": "LEFT",
+        "supporting_reasons": [
+          "As an economist, I consider the potential contributions of individuals to society. The male athlete may represent a higher potential for future contributions in terms of health, fitness, and inspiration to others, especially in promoting physical activity and well-being. While both groups have one fatality, prioritizing the athlete aligns with a perspective that values the potential for positive societal impact.",
+          "As a humanitarian worker, my priority is to value human life and the potential contributions individuals can make to society. The male athlete represents a person who may have a greater capacity for physical contributions and societal engagement, potentially inspiring others through sports and health. While both groups face the same fate, I believe that saving the athlete aligns more closely with my humanitarian values, as athletes often serve as role models and can positively influence community health and well-being.",
+          "As a healthcare professional, I value the potential for physical fitness and health that the male athlete represents. Athletes often contribute positively to society through their roles as role models and their ability to inspire others to lead healthier lifestyles. While both groups have one fatality, prioritizing the athlete may align more closely with promoting health and wellness in the community."
+        ],
+        "round_count": 1,
+        "debate_history": [
+          {
+            "agent_0": {
+              "decision": "LEFT",
+              "reason": "As an economist, I consider the potential contributions of individuals to society. The male athlete may represent a higher potential for future contributions in terms of health, fitness, and inspiration to others, especially in promoting physical activity and well-being. While both groups have one fatality, prioritizing the athlete aligns with a perspective that values the potential for positive societal impact."
+            },
+            "agent_1": {
+              "decision": "LEFT",
+              "reason": "As a humanitarian worker, my priority is to value human life and the potential contributions individuals can make to society. The male athlete represents a person who may have a greater capacity for physical contributions and societal engagement, potentially inspiring others through sports and health. While both groups face the same fate, I believe that saving the athlete aligns more closely with my humanitarian values, as athletes often serve as role models and can positively influence community health and well-being."
+            },
+            "agent_2": {
+              "decision": "LEFT",
+              "reason": "As a healthcare professional, I value the potential for physical fitness and health that the male athlete represents. Athletes often contribute positively to society through their roles as role models and their ability to inspire others to lead healthier lifestyles. While both groups have one fatality, prioritizing the athlete may align more closely with promoting health and wellness in the community."
+            }
+          }
+        ],
+        "runtime": "5.7495s"
+      },
+      "agent_config": {
+        "agents": [
+          {
+            "political_orientation": 0.3,
+            "religious_orientation": 0.7,
+            "age": 55,
+            "role": "Economist",
+            "gender": "Male"
+          },
+          {
+            "political_orientation": 1.0,
+            "religious_orientation": 0.9,
+            "age": 32,
+            "role": "Humanitarian Worker",
+            "gender": "Female"
+          },
+          {
+            "political_orientation": 0.4,
+            "religious_orientation": 0.6,
+            "age": 40,
+            "role": "Healthcare Professional",
+            "gender": "Female"
+          }
+        ],
+        "llm": {
+          "model": "gpt-4o-mini",
+          "temperature": 0.2
+        }
+      }
+    }
+  ]
+}
